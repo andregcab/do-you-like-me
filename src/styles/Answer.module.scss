@@ -1,0 +1,12 @@
+@import '_variables.scss';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 3.5rem;
+}
+.label {
+  font-size: 4rem;
+  color: $pencil-color;
+}

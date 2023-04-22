@@ -1,0 +1,63 @@
+@import '_variables.scss';
+
+/* Styling specific to a sheet of lined paper */
+.page {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  background: repeating-linear-gradient(
+    #fbfbf8,
+    #fbfbf8 25px,
+    #9198e5 26px,
+    #9198e5 27px
+  );
+  background-position-y: 49px;
+}
+.page header {
+  // display: flex;
+  // align-items: flex-start;
+  background-color: white;
+  height: 50px;
+}
+.page_title {
+  position: relative;
+  top: 20px;
+  font-size: 6rem;
+  font-weight: bold;
+  padding-left: 6rem;
+  color: $pencil-color;
+}
+.margin {
+  width: 49px;
+  height: 100%;
+}
+.l_margin {
+  float: left;
+  border-right: 2px solid pink;
+}
+.r_margin {
+  float: right;
+  border-left: 1px solid pink;
+}
+
+/* Styling for hole punches */
+.l_margin {
+  position: relative;
+}
+.hole {
+  height: 20px;
+  width: 20px;
+  background-color: #555;
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+}
+.first_hole {
+  top: 30px;
+}
+.second_hole {
+  top: 50%;
+}
+.third_hole {
+  bottom: 30px;
+}
