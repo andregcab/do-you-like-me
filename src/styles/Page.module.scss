@@ -4,19 +4,18 @@
 .page {
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: $background-color;
   background: repeating-linear-gradient(
-    #fbfbf8,
-    #fbfbf8 25px,
+    $background-color,
+    $background-color 25px,
     #9198e5 26px,
     #9198e5 27px
   );
-  background-position-y: 49px;
+  background-position-y: 5px;
 }
 .page header {
-  // display: flex;
-  // align-items: flex-start;
-  background-color: white;
+  padding-left: 25%;
+  background-color: $background-color;
   height: 50px;
 }
 .page_title {
@@ -24,7 +23,6 @@
   top: 20px;
   font-size: 6rem;
   font-weight: bold;
-  padding-left: 6rem;
   color: $pencil-color;
 }
 .margin {
@@ -60,4 +58,31 @@
 }
 .third_hole {
   bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .page_title {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .page header {
+    padding-left: 20%;
+  }
+  .page_title {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-device-width: 380px) {
+  .page_title {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (max-device-width: 325px) {
+  .page_title {
+    font-size: 2rem;
+  }
 }

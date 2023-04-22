@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
+import styles from '@styles/SendButton.module.scss';
 
 interface SendButtonProps {
   checked: boolean;
@@ -13,18 +14,8 @@ const SendButton = ({ checked }: SendButtonProps) => {
   };
 
   return (
-    <div
-      onClick={handleClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        marginLeft: '3rem',
-        cursor: 'pointer',
-      }}
-    >
-      <span style={{ fontSize: '1.5rem', marginRight: '1rem' }}>
-        let them know
-      </span>
+    <div className={styles.container} onClick={handleClick}>
+      <span className={styles.text}>let them know</span>
       <Image
         alt="paper plane"
         src={PaperPlaneIcon}

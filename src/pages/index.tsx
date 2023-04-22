@@ -1,8 +1,7 @@
 import Head from 'next/head';
-import { Answers } from '@types';
 import AppContextProvider from '@context';
-import Answer from '@components/Answer';
 import Page from '@components/Page';
+import LandingPage from '@components/LandingPage';
 import Questions from '@components/Questions';
 
 const Main = () => {
@@ -27,11 +26,8 @@ const Main = () => {
       <main>
         <AppContextProvider>
           <Page>
-            <Questions>
-              <Answer title={Answers.YES} />
-              <Answer title={Answers.NO} />
-              <Answer title={Answers.MAYBE} />
-            </Questions>
+            <LandingPage />
+            <Questions />
           </Page>
         </AppContextProvider>
       </main>

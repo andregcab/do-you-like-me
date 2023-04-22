@@ -1,8 +1,15 @@
-import { PropsWithChildren } from 'react';
+import { Answers } from '@types';
+import Answer from '@components/Answer';
 import styles from '@styles/Questions.module.scss';
 
-const Questions = ({ children }: PropsWithChildren) => {
-  return <div className={styles.container}>{children}</div>;
+const Questions = () => {
+  return (
+    <div className={styles.container}>
+      <Answer title={Answers.YES} />
+      <Answer title={Answers.NO} />
+      <Answer title={Answers.MAYBE} />
+    </div>
+  );
 };
 
 export default Questions;
