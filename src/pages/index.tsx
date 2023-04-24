@@ -27,7 +27,7 @@ const Main = () => {
         <AppContextProvider>
           <Page>
             <LandingPage />
-            <Questions />
+            {/* <Questions /> */}
           </Page>
         </AppContextProvider>
       </main>

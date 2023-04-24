@@ -11,7 +11,7 @@
   -o-transition: 400ms 100ms ease-out;
   transition: 400ms 100ms ease-out;
   &:hover {
-    border-color: $hover-color;
+    border-color: $pencil-color;
   }
 }
 
@@ -21,8 +21,8 @@
   top: calc($checkbox-size * -0.35);
   width: calc($checkbox-size * 0.4);
   height: calc($checkbox-size);
-  border-right: calc($checkbox-size * 0.25) solid $tick-color;
-  border-bottom: calc($checkbox-size * 0.25) solid $tick-color;
+  border-right: calc($checkbox-size * 0.25) solid $pencil-color;
+  border-bottom: calc($checkbox-size * 0.25) solid $pencil-color;
   -webkit-transform: rotate(45deg) scale(0);
   -ms-transform: rotate(45deg) scale(0);
   transform: rotate(45deg) scale(0);
@@ -35,7 +35,7 @@
     position: absolute;
     left: calc($checkbox-size * -0.125);
     bottom: calc($checkbox-size * -0.25);
-    border: calc($checkbox-size * 0.125) solid $tick-color;
+    border: calc($checkbox-size * 0.125) solid $pencil-color;
     border-radius: 50%;
   }
   &::after {
@@ -43,7 +43,7 @@
     position: absolute;
     right: calc($checkbox-size * -0.25);
     top: calc($checkbox-size * -0.125);
-    border: calc($checkbox-size * 0.125) solid $tick-color;
+    border: calc($checkbox-size * 0.125) solid $pencil-color;
     border-radius: 50%;
   }
   [type='checkbox']:checked + .label .tick {
@@ -126,7 +126,7 @@
     margin: 0 calc($checkbox-size-md * 0.25);
     width: $checkbox-size-md;
     height: $checkbox-size-md;
-    border: calc($checkbox-size-md * 0.125) solid $checkbox-color;
+    border: calc($checkbox-size-md * 0.125) solid $pencil-color;
   }
   .tick {
     right: calc($checkbox-size * -0.4);
@@ -141,7 +141,7 @@
     margin: 0 calc($checkbox-size-sm * 0.25);
     width: $checkbox-size-sm;
     height: $checkbox-size-sm;
-    border: calc($checkbox-size-sm * 0.125) solid $checkbox-color;
+    border: calc($checkbox-size-sm * 0.125) solid $pencil-color;
   }
   .tick {
     right: calc($checkbox-size * -0.25);
@@ -151,12 +151,12 @@
     &::before {
       left: calc($checkbox-size * -0.125);
       bottom: calc($checkbox-size * -0.25);
-      border: calc($checkbox-size * 0.125) solid $tick-color;
+      border: calc($checkbox-size * 0.125) solid $pencil-color;
     }
     &::after {
       right: calc($checkbox-size * -0.25);
       top: calc($checkbox-size * -0.125);
-      border: calc($checkbox-size * 0.125) solid $tick-color;
+      border: calc($checkbox-size * 0.125) solid $pencil-color;
     }
   }
 }

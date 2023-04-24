@@ -14,7 +14,7 @@
   background-position-y: 5px;
 }
 .page header {
-  padding-left: 30%;
+  padding-left: 32%;
   background-color: $background-color;
   height: 50px;
 }
@@ -60,18 +60,18 @@
   bottom: 30px;
 }
 
-@media (max-width: 1435px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .page header {
     padding-left: 28%;
   }
   .page_title {
-    font-size: 5rem;
+    font-size: 5.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .page header {
-    padding-left: 25%;
+    padding-left: 28%;
   }
   .page_title {
     font-size: 4rem;
