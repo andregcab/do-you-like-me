@@ -2,12 +2,17 @@ import { Answers } from '@types';
 import Answer from '@components/Answer';
 import styles from '@styles/Questions.module.scss';
 
-const Questions = () => {
+interface QuestionsProps {
+  answers: Array<Answers>;
+  className?: string;
+}
+
+const Questions = ({ answers, className }: QuestionsProps) => {
   return (
-    <div className={styles.container}>
-      <Answer title={Answers.YES} />
-      <Answer title={Answers.NO} />
-      <Answer title={Answers.MAYBE} />
+    <div className={className || styles.container}>
+      {answers.map((answer) => {
+        return <Answer key={answer} title={answer} />;
+      })}
     </div>
   );
 };

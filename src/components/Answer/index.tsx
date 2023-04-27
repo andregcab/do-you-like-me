@@ -20,7 +20,10 @@ const Answer = ({ title }: AnswerProps) => {
       <label className={styles.label} htmlFor={title}>
         {title}
       </label>
-      <SendButton checked={checked} />
+      {/* some logic here only to show when the app is in a certain
+      "state", should probably be triggered in context from either url
+      params only */}
+      {/* <SendButton checked={checked} /> */}
     </div>
   );
 };

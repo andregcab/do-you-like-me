@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15%;
+  input,
+  span,
+  label {
+    font-size: 1.6rem;
+  }
+  input {
+    background-color: white;
+    border-width: 0.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    input,
+    span,
+    label {
+      font-size: 1rem;
+    }
+  }
+}

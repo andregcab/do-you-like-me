@@ -4,6 +4,10 @@ export enum Answers {
   YES = 'yes',
   NO = 'no',
   MAYBE = 'maybe',
+  ASK = 'Ask someone if they like you',
+  SEE = 'See the questions page',
+  WHO = 'Who made this thing anyway?',
+  SECRET = 'A secret fourth thing',
 }
 
 export type AnswerState = Answers | null;

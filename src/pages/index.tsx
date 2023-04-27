@@ -2,7 +2,6 @@ import Head from 'next/head';
 import AppContextProvider from '@context';
 import Page from '@components/Page';
 import LandingPage from '@components/LandingPage';
-import Questions from '@components/Questions';
 
 const Main = () => {
   return (
@@ -27,7 +26,6 @@ const Main = () => {
         <AppContextProvider>
           <Page>
             <LandingPage />
-            {/* <Questions /> */}
           </Page>
         </AppContextProvider>
       </main>

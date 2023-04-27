@@ -1,25 +1,48 @@
-.container {
+.question_overrides {
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  margin-top: 15%;
-  input,
-  span,
-  label {
-    font-size: 1.6rem;
+  margin-top: 6rem;
+  margin-left: 4%;
+  > div {
+    margin: 2.5rem;
+    label {
+      font-size: 3rem;
+    }
   }
-  input {
-    background-color: white;
-    border-width: 0.25rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .question_overrides {
+    margin-top: 6.5rem;
+    > div {
+      margin: 1.8rem;
+      label {
+        font-size: 3rem;
+      }
+    }
   }
 }
 
 @media (max-width: 768px) {
-  .container {
-    input,
-    span,
-    label {
-      font-size: 1rem;
+  .question_overrides {
+    > div {
+      label {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .question_overrides {
+    > div {
+      margin: 2rem 0;
+      label {
+        margin-left: 1rem;
+        font-size: 1.2rem;
+      }
     }
   }
 }
