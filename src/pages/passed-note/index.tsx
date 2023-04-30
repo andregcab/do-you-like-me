@@ -1,14 +1,12 @@
 import { Options } from '@types';
-import Option from '@components/Option';
-import styles from '@styles/Questions.module.scss';
+import OptionsList from '@components/OptionsList';
+import styles from '@styles/PassedNote.module.scss';
+
+const options = [Options.YES, Options.NO, Options.MAYBE];
 
 const PassedNote = () => {
   return (
-    <div className={styles.container}>
-      <Option option={Options.YES} />
-      <Option option={Options.NO} />
-      <Option option={Options.MAYBE} />
-    </div>
+    <OptionsList className={styles.passed_note} options={options} />
   );
 };
 

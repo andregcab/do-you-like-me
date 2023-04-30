@@ -1,11 +1,17 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import '@styles/globals.scss';
 import type { AppProps } from 'next/app';
+import { ChakraProvider } from '@chakra-ui/react';
+import AppContextProvider from '@context';
+import NotebookPaper from '@components/NotebookPaper';
+import '@styles/globals.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
-      <Component {...pageProps} />;
+      <AppContextProvider>
+        <NotebookPaper>
+          <Component {...pageProps} />;
+        </NotebookPaper>
+      </AppContextProvider>
     </ChakraProvider>
   );
 }

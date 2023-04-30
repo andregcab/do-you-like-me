@@ -1,15 +1,14 @@
 import { Options } from '@types';
 import Option from '@components/Option';
-import styles from '@styles/OptionsList.module.scss';
 
 interface OptionsListProps {
+  className: string;
   options: Array<Options>;
-  className?: string;
 }
 
-const OptionsList = ({ options, className }: OptionsListProps) => {
+const OptionsList = ({ className, options }: OptionsListProps) => {
   return (
-    <div className={className || styles.container}>
+    <div className={className}>
       {options.map((option) => {
         return <Option key={option} option={option} />;
       })}
