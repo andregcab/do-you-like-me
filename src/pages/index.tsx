@@ -1,7 +1,17 @@
 import Head from 'next/head';
 import AppContextProvider from '@context';
-import Page from '@components/Page';
-import LandingPage from '@components/LandingPage';
+import { Box } from '@chakra-ui/react';
+import NotebookPaper from '@components/NotebookPaper';
+import OptionsList from '@components/OptionsList';
+import { Options } from '@types';
+import styles from '@styles/LandingPage.module.scss';
+
+const options = [
+  Options.ASK,
+  Options.SEE,
+  Options.WHO,
+  Options.SECRET,
+];
 
 const Main = () => {
   return (
@@ -24,9 +34,14 @@ const Main = () => {
       </Head>
       <main>
         <AppContextProvider>
-          <Page>
-            <LandingPage />
-          </Page>
+          <NotebookPaper>
+            <Box>
+              <OptionsList
+                className={styles.options_list_overrides}
+                options={options}
+              />
+            </Box>
+          </NotebookPaper>
         </AppContextProvider>
       </main>
     </>

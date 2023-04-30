@@ -1,9 +1,9 @@
 // import Image from 'next/image';
 import { PropsWithChildren } from '@types';
-import styles from '@styles/Page.module.scss';
+import styles from '@styles/NotebookPaper.module.scss';
 // import uwuImage from '@public/Stylized_uwu_emoticon.png';
 
-const Page = ({ children }: PropsWithChildren) => {
+const NotebookPaper = ({ children }: PropsWithChildren) => {
   return (
     <div className={styles.page}>
       <div className={`${styles.l_margin} ${styles.margin}`}>
@@ -21,4 +21,4 @@ const Page = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default Page;
+export default NotebookPaper;

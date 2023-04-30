@@ -1,4 +1,4 @@
-.question_overrides {
+.options_list_overrides {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .question_overrides {
+  .options_list_overrides {
     margin-top: 6.5rem;
     > div {
       margin: 1.8rem;
@@ -26,7 +26,7 @@
 }
 
 @media (max-width: 768px) {
-  .question_overrides {
+  .options_list_overrides {
     > div {
       label {
         font-size: 2rem;
@@ -36,7 +36,7 @@
 }
 
 @media only screen and (max-device-width: 480px) {
-  .question_overrides {
+  .options_list_overrides {
     > div {
       margin: 2rem 0;
       label {

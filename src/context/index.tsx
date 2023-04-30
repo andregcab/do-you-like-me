@@ -1,26 +1,29 @@
 import { createContext, useState } from 'react';
 import {
-  Answers,
-  AnswerState,
+  Options,
+  OptionState,
   PropsWithChildren,
-  SetAnswerType,
+  setOptionType,
 } from '@types';
 
 export type AppContextType = {
-  answer: Answers | null;
-  setAnswer: SetAnswerType;
+  selectedOption: Options | null;
+  setSelectedOption: setOptionType;
 };
 
 export const AppContext = createContext<AppContextType>({
-  answer: null,
-  setAnswer: () => {},
+  selectedOption: null,
+  setSelectedOption: () => {},
 });
 
 const AppContextProvider = ({ children }: PropsWithChildren) => {
-  const [answer, setAnswer] = useState<AnswerState>(null);
+  const [selectedOption, setSelectedOption] =
+    useState<OptionState>(null);
 
   return (
-    <AppContext.Provider value={{ answer, setAnswer }}>
+    <AppContext.Provider
+      value={{ selectedOption, setSelectedOption }}
+    >
       {children}
     </AppContext.Provider>
   );
