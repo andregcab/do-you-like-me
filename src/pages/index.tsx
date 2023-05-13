@@ -1,10 +1,9 @@
 import Head from 'next/head';
-import { Box } from '@chakra-ui/react';
 import { Options } from '@types';
 import OptionsList from '@components/OptionsList';
 import styles from '@styles/LandingPage.module.scss';
 
-const options = [
+const OPTIONS = [
   Options.ASK,
   Options.SEE,
   Options.WHO,
@@ -25,17 +24,11 @@ const Main = () => {
           content="width=device-width, initial-scale=1"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.cdnfonts.com/css/handwriting"
-          rel="stylesheet"
-        />
       </Head>
-      <Box>
-        <OptionsList
-          className={styles.landing_page}
-          options={options}
-        />
-      </Box>
+      <OptionsList
+        className={styles.landing_page}
+        options={OPTIONS}
+      />
     </>
   );
 };

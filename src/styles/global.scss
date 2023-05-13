@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Handwriting';
+  src: url('../asset/Handwriting/Handwriting.ttf');
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Handwriting', sans-serif;
+}
