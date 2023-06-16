@@ -3,14 +3,25 @@ import Option from '@components/Option';
 
 interface OptionsListProps {
   className: string;
-  options: Array<Options>;
+  options: Options;
+  showSendBtn?: boolean;
 }
 
-const OptionsList = ({ className, options }: OptionsListProps) => {
+const OptionsList = ({
+  className,
+  options,
+  showSendBtn,
+}: OptionsListProps) => {
   return (
     <div className={className}>
       {options.map((option) => {
-        return <Option key={option} option={option} />;
+        return (
+          <Option
+            key={option.label}
+            option={option}
+            showSendBtn={showSendBtn}
+          />
+        );
       })}
     </div>
   );

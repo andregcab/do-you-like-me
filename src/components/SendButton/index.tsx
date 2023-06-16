@@ -6,11 +6,12 @@ import styles from '@styles/SendButton.module.scss';
 
 interface SendButtonProps {
   checked: boolean;
+  show: boolean;
 }
 
-const SendButton = ({ checked }: SendButtonProps) => {
+const SendButton = ({ checked, show }: SendButtonProps) => {
   const { editing } = useContext(AppContext);
-  if (!checked || !editing) return null;
+  if (!checked || !editing || !show) return null;
 
   const handleClick = () => {
     console.log('sent');

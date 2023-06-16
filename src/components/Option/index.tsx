@@ -1,26 +1,28 @@
 import { useContext } from 'react';
 import { AppContext } from '@context';
-import { Options } from '@types';
+import { Option } from '@types';
 import Checkbox from '@components/Checkbox';
 import SendButton from '@components/SendButton';
 import styles from '@styles/Option.module.scss';
 
 interface OptionProps {
-  option: Options;
+  option: Option;
+  showSendBtn?: boolean;
 }
 
-const Option = ({ option }: OptionProps) => {
+const Option = ({ option, showSendBtn = false }: OptionProps) => {
   const { selectedOption } = useContext(AppContext);
 
-  const checked = selectedOption === option;
+  const { label } = option;
+  const checked = selectedOption?.label === label;
 
   return (
     <div className={styles.wrapper}>
       <Checkbox option={option} checked={checked} />
-      <label className={styles.label} htmlFor={option}>
-        {option}
+      <label className={styles.label} htmlFor={label}>
+        {label}
       </label>
-      <SendButton checked={checked} />
+      <SendButton show={showSendBtn} checked={checked} />
     </div>
   );
 };

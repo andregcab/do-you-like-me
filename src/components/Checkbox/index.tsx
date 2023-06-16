@@ -1,27 +1,32 @@
 import { useContext } from 'react';
 import { AppContext } from '@context';
-import { Options } from '@types';
+import { Option } from '@types';
 import styles from '@styles/Checkbox.module.scss';
 
 interface CheckboxProps {
-  option: Options;
+  option: Option;
   checked: boolean;
 }
 
 const Checkbox = ({ option, checked }: CheckboxProps) => {
   const { setSelectedOption } = useContext(AppContext);
 
+  const { label, action } = option;
+
   return (
     <>
       <input
         className={styles.input}
-        id={option}
+        id={label}
         checked={checked}
         type="checkbox"
-        onClick={() => setSelectedOption(option)}
+        onClick={() => {
+          setSelectedOption(option);
+          action();
+        }}
         readOnly
       />
-      <label className={styles.label} htmlFor={option}>
+      <label className={styles.label} htmlFor={label}>
         <div className={styles.tick} />
       </label>
     </>

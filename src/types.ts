@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
-export enum Options {
+export enum Questions {
   YES = 'yes',
   NO = 'no',
   MAYBE = 'maybe',
@@ -10,11 +10,18 @@ export enum Options {
   SECRET = 'A secret fourth thing',
 }
 
-export type OptionState = Options | null;
+export type Option = {
+  label: Questions;
+  action: () => void;
+};
+
+export type Options = Array<Option>;
+
+export type OptionState = Option | null;
 
 export type StateSetter<T> = Dispatch<SetStateAction<T>>;
 
-export type SetOption = StateSetter<Options | null>;
+export type SetOption = StateSetter<Option | null>;
 
 export type SetEditing = StateSetter<boolean>;
 

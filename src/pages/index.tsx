@@ -1,16 +1,20 @@
+import { useContext } from 'react';
 import Head from 'next/head';
-import { Options } from '@types';
+import { AppContext } from '@context';
+import { Questions } from '@types';
 import OptionsList from '@components/OptionsList';
 import styles from '@styles/LandingPage.module.scss';
 
-const OPTIONS = [
-  Options.ASK,
-  Options.SEE,
-  Options.WHO,
-  Options.SECRET,
-];
-
 const Main = () => {
+  const { setEditing } = useContext(AppContext);
+
+  const options = [
+    { label: Questions.ASK, action: () => setEditing(true) },
+    { label: Questions.SEE, action: () => setEditing(true) },
+    { label: Questions.WHO, action: () => setEditing(true) },
+    { label: Questions.SECRET, action: () => setEditing(true) },
+  ];
+
   return (
     <>
       <Head>
@@ -27,7 +31,7 @@ const Main = () => {
       </Head>
       <OptionsList
         className={styles.landing_page}
-        options={OPTIONS}
+        options={options}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import {
-  Options,
+  Option,
   OptionState,
   PropsWithChildren,
   SetEditing,
@@ -10,7 +10,7 @@ import {
 export type AppContextType = {
   editing: boolean;
   setEditing: SetEditing;
-  selectedOption: Options | null;
+  selectedOption: Option | null;
   setSelectedOption: SetOption;
 };
 
