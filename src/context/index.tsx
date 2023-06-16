@@ -3,15 +3,20 @@ import {
   Options,
   OptionState,
   PropsWithChildren,
-  setOptionType,
+  SetEditing,
+  SetOption,
 } from '@types';
 
 export type AppContextType = {
+  editing: boolean;
+  setEditing: SetEditing;
   selectedOption: Options | null;
-  setSelectedOption: setOptionType;
+  setSelectedOption: SetOption;
 };
 
 export const AppContext = createContext<AppContextType>({
+  editing: false,
+  setEditing: () => {},
   selectedOption: null,
   setSelectedOption: () => {},
 });
@@ -19,10 +24,16 @@ export const AppContext = createContext<AppContextType>({
 const AppContextProvider = ({ children }: PropsWithChildren) => {
   const [selectedOption, setSelectedOption] =
     useState<OptionState>(null);
+  const [editing, setEditing] = useState<boolean>(true);
 
   return (
     <AppContext.Provider
-      value={{ selectedOption, setSelectedOption }}
+      value={{
+        editing,
+        setEditing,
+        selectedOption,
+        setSelectedOption,
+      }}
     >
       {children}
     </AppContext.Provider>

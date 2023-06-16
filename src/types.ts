@@ -12,7 +12,11 @@ export enum Options {
 
 export type OptionState = Options | null;
 
-export type setOptionType = Dispatch<SetStateAction<Options | null>>;
+export type StateSetter<T> = Dispatch<SetStateAction<T>>;
+
+export type SetOption = StateSetter<Options | null>;
+
+export type SetEditing = StateSetter<boolean>;
 
 export type PropsWithChildren = {
   children: ReactNode;

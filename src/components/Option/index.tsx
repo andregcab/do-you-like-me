@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '@context';
 import { Options } from '@types';
 import Checkbox from '@components/Checkbox';
-// import SendButton from '@components/SendButton';
+import SendButton from '@components/SendButton';
 import styles from '@styles/Option.module.scss';
 
 interface OptionProps {
@@ -20,10 +20,7 @@ const Option = ({ option }: OptionProps) => {
       <label className={styles.label} htmlFor={option}>
         {option}
       </label>
-      {/* some logic here only to show when the app is in a certain
-      "state", should probably be triggered in context from either url
-      params only */}
-      {/* <SendButton checked={checked} /> */}
+      <SendButton checked={checked} />
     </div>
   );
 };

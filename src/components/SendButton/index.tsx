@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import Image from 'next/image';
+import { AppContext } from '@context';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
 import styles from '@styles/SendButton.module.scss';
 
@@ -7,7 +9,8 @@ interface SendButtonProps {
 }
 
 const SendButton = ({ checked }: SendButtonProps) => {
-  if (!checked) return null;
+  const { editing } = useContext(AppContext);
+  if (!checked || !editing) return null;
 
   const handleClick = () => {
     console.log('sent');
