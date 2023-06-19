@@ -7,8 +7,8 @@ import OptionsList from '@components/OptionsList';
 import styles from '@styles/LandingPage.module.scss';
 
 const Main = () => {
-  const { setEditing } = useContext(AppContext);
   const router = useRouter();
+  const { setEditing } = useContext(AppContext);
 
   const askActions = [
     () => setEditing(true),
