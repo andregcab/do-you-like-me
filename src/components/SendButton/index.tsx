@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { AppContext } from '@context';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
 import styles from '@styles/SendButton.module.scss';
@@ -11,7 +10,6 @@ interface SendButtonProps {
 }
 
 const SendButton = ({ checked, show }: SendButtonProps) => {
-  const router = useRouter();
   const { editing } = useContext(AppContext);
 
   const hideButton = !show || !editing || !checked;
@@ -19,7 +17,6 @@ const SendButton = ({ checked, show }: SendButtonProps) => {
   if (hideButton) return null;
 
   const handleClick = () => {
-    router.push('send-note');
     console.log('sent');
   };
 

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AppContext } from '@context';
@@ -8,11 +8,11 @@ import styles from '@styles/LandingPage.module.scss';
 
 const Main = () => {
   const router = useRouter();
-  const { setEditing } = useContext(AppContext);
+  const { setEditing, setSelectedOption } = useContext(AppContext);
 
   const askActions = [
     () => setEditing(true),
-    () => router.push('/note'),
+    () => router.push('/send-note'),
   ];
   const seeActions = [() => router.push('/note')];
   const whoActions = [() => setEditing(true)];
@@ -24,6 +24,11 @@ const Main = () => {
     { label: Questions.WHO, actions: whoActions },
     { label: Questions.SECRET, actions: secretActions },
   ];
+
+  useEffect(() => {
+    setEditing(false);
+    setSelectedOption(null);
+  }, [setEditing, setSelectedOption]);
 
   return (
     <>
