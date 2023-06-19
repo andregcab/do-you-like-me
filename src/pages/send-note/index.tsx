@@ -1,14 +1,21 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {
   Box,
   Button,
+  Card,
+  CardBody,
+  Code,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
+  Text,
+  useClipboard,
 } from '@chakra-ui/react';
+import { encodeEmail } from '@utils';
 import styles from '@styles/EmailForm.module.scss';
 
 const schema = yup
@@ -22,61 +29,80 @@ const schema = yup
 
 type FormData = yup.InferType<typeof schema>;
 
-const EmailForm = () => {
+const CreateLink = () => {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+  const [generatedLink, setGeneratedLink] = useState<string>();
+  const { onCopy, setValue, hasCopied } = useClipboard('');
 
   function onSubmit(values: FormData) {
-    console.log({ values });
     return new Promise<void>((resolve) => {
       setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
+        const { yourEmail } = values;
+        const encodedEmail = encodeEmail(yourEmail);
+        const link = `http://localhost:3000/note/${encodedEmail}`;
+        setValue(link);
+        setGeneratedLink(link);
         resolve();
-      }, 3000);
+      }, 500);
     });
   }
 
   return (
-    <form
-      className={styles.container}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <Box>
-        <FormControl isInvalid={!!errors.yourEmail?.message}>
-          <FormLabel htmlFor="yourEmail">
-            Email where you&apos;ll get the result
-          </FormLabel>
-          <Input
-            id="yourEmail"
-            placeholder="email address"
-            {...register('yourEmail')}
-          />
-          <FormErrorMessage>
-            <span>{errors.yourEmail?.message}</span>
-          </FormErrorMessage>
-        </FormControl>
-        <Button
-          mt={4}
-          colorScheme="teal"
-          isLoading={isSubmitting}
-          type="submit"
-        >
-          Submit
-        </Button>
-      </Box>
-    </form>
+    <>
+      <form
+        className={styles.container}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Box maxW="xl">
+          <FormControl isInvalid={!!errors.yourEmail?.message}>
+            <FormLabel htmlFor="yourEmail">
+              Create a sharable link using your email. Send this link
+              to anyone and receive their response via email.
+            </FormLabel>
+            <Box display="flex" alignItems="center">
+              <Input
+                id="yourEmail"
+                placeholder="email address"
+                {...register('yourEmail')}
+              />
+
+              <Button
+                ml={2}
+                colorScheme="teal"
+                isLoading={isSubmitting}
+                type="submit"
+              >
+                Generate link
+              </Button>
+            </Box>
+            <FormErrorMessage>
+              <span>{errors.yourEmail?.message}</span>
+            </FormErrorMessage>
+          </FormControl>
+        </Box>
+        {generatedLink && (
+          <Card mt={10} variant="elevated">
+            <CardBody>
+              <Text fontSize="xl">Your generated link</Text>
+              <Code marginRight={2} colorScheme="orange">
+                {generatedLink}
+              </Code>
+              <Button onClick={onCopy}>
+                {hasCopied ? 'Copied!' : 'Copy'}
+              </Button>
+            </CardBody>
+          </Card>
+        )}
+      </form>
+    </>
   );
 };
 
-export default EmailForm;
+export default CreateLink;
 
-// TODO:
-
-// 1. create an actual landing page file
-// 2. migrate this code to another component called idk
-// 3. convert the "new" form component and page component to routes
-// 4. the landing page will act as a navigator component
-// 5. choices will be send to someone, check out page, check out creator (me), and a fourth sillier thing (secret thing meme?)
+// TODO: add back button after generate link
+//
