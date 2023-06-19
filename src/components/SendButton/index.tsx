@@ -11,7 +11,9 @@ interface SendButtonProps {
 
 const SendButton = ({ checked, show }: SendButtonProps) => {
   const { editing } = useContext(AppContext);
-  if (!checked || !editing || !show) return null;
+  const hideButton = !checked || !editing || !show;
+
+  if (hideButton) return null;
 
   const handleClick = () => {
     console.log('sent');

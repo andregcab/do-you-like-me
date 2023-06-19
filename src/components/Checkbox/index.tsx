@@ -11,7 +11,7 @@ interface CheckboxProps {
 const Checkbox = ({ option, checked }: CheckboxProps) => {
   const { setSelectedOption } = useContext(AppContext);
 
-  const { label, action } = option;
+  const { label, actions } = option;
 
   return (
     <>
@@ -22,7 +22,7 @@ const Checkbox = ({ option, checked }: CheckboxProps) => {
         type="checkbox"
         onClick={() => {
           setSelectedOption(option);
-          action();
+          actions.forEach((cb) => cb());
         }}
         readOnly
       />

@@ -12,7 +12,7 @@ export enum Questions {
 
 export type Option = {
   label: Questions;
-  action: () => void;
+  actions: Array<() => void>;
 };
 
 export type Options = Array<Option>;

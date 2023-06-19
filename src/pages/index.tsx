@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AppContext } from '@context';
 import { Questions } from '@types';
@@ -7,12 +8,26 @@ import styles from '@styles/LandingPage.module.scss';
 
 const Main = () => {
   const { setEditing } = useContext(AppContext);
+  const router = useRouter();
+
+  const delayedReroute = (route: string) =>
+    setTimeout(() => {
+      router.push(route);
+    }, 500);
+
+  const askActions = [
+    () => setEditing(true),
+    () => delayedReroute('/note'),
+  ];
+  const seeActions = [() => setEditing(true)];
+  const whoActions = [() => setEditing(true)];
+  const secretActions = [() => setEditing(true)];
 
   const options = [
-    { label: Questions.ASK, action: () => setEditing(true) },
-    { label: Questions.SEE, action: () => setEditing(true) },
-    { label: Questions.WHO, action: () => setEditing(true) },
-    { label: Questions.SECRET, action: () => setEditing(true) },
+    { label: Questions.ASK, actions: askActions },
+    { label: Questions.SEE, actions: seeActions },
+    { label: Questions.WHO, actions: whoActions },
+    { label: Questions.SECRET, actions: secretActions },
   ];
 
   return (

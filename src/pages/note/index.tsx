@@ -3,10 +3,14 @@ import OptionsList from '@components/OptionsList';
 import styles from '@styles/PassedNote.module.scss';
 
 const PassedNote = () => {
+  const yesActions = [() => console.log('yes')];
+  const noActions = [() => console.log('no')];
+  const maybeActions = [() => console.log('maybe')];
+
   const options = [
-    { label: Questions.YES, action: () => console.log('yes') },
-    { label: Questions.NO, action: () => console.log('no') },
-    { label: Questions.MAYBE, action: () => console.log('maybe') },
+    { label: Questions.YES, actions: yesActions },
+    { label: Questions.NO, actions: noActions },
+    { label: Questions.MAYBE, actions: maybeActions },
   ];
 
   return (
