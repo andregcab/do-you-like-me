@@ -10,16 +10,11 @@ const Main = () => {
   const { setEditing } = useContext(AppContext);
   const router = useRouter();
 
-  const delayedReroute = (route: string) =>
-    setTimeout(() => {
-      router.push(route);
-    }, 500);
-
   const askActions = [
     () => setEditing(true),
-    () => delayedReroute('/note'),
+    () => router.push('/note'),
   ];
-  const seeActions = [() => setEditing(true)];
+  const seeActions = [() => router.push('/note')];
   const whoActions = [() => setEditing(true)];
   const secretActions = [() => setEditing(true)];
 

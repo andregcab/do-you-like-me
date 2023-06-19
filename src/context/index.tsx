@@ -24,7 +24,7 @@ export const AppContext = createContext<AppContextType>({
 const AppContextProvider = ({ children }: PropsWithChildren) => {
   const [selectedOption, setSelectedOption] =
     useState<OptionState>(null);
-  const [editing, setEditing] = useState<boolean>(true);
+  const [editing, setEditing] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
