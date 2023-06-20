@@ -57,15 +57,16 @@ const CreateLink = () => {
         className={styles.container}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Box maxW="xl">
+        <Box maxW="2xl">
           <FormControl isInvalid={!!errors.yourEmail?.message}>
-            <FormLabel htmlFor="yourEmail">
+            <FormLabel margin={2} maxW="80%" htmlFor="yourEmail">
               Create a sharable link using your email. Send this link
               to anyone and receive their response via email.
             </FormLabel>
-            <Box display="flex" alignItems="center">
+            <Box display="flex" alignItems="center" flexWrap="wrap">
               <Input
                 id="yourEmail"
+                margin={2}
                 placeholder="email address"
                 {...register('yourEmail')}
               />
@@ -84,19 +85,27 @@ const CreateLink = () => {
             </FormErrorMessage>
           </FormControl>
         </Box>
-        {generatedLink && (
-          <Card mt={10} variant="elevated">
-            <CardBody>
-              <Text fontSize="xl">Your generated link</Text>
-              <Code marginRight={2} colorScheme="orange">
-                {generatedLink}
-              </Code>
-              <Button onClick={onCopy}>
-                {hasCopied ? 'Copied!' : 'Copy'}
-              </Button>
-            </CardBody>
-          </Card>
-        )}
+        <Box maxW="100%">
+          {generatedLink && (
+            <Card mt={14} variant="elevated">
+              <CardBody flexWrap="wrap">
+                <Text fontSize="xl">Your generated link</Text>
+                <Code
+                  maxW="100%"
+                  whiteSpace="nowrap"
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                  colorScheme="orange"
+                >
+                  {generatedLink}
+                </Code>
+                <Button ml={2} onClick={onCopy}>
+                  {hasCopied ? 'Copied!' : 'Copy'}
+                </Button>
+              </CardBody>
+            </Card>
+          )}
+        </Box>
       </form>
     </>
   );
