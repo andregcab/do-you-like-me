@@ -13,15 +13,15 @@ const Transition = ({ children }: TransitionProps) => {
       opacity: 0,
       y: 40,
       transition: {
-        duration: 0.4,
+        duration: 0.3,
       },
     },
     in: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.4,
-        delay: 0.4,
+        duration: 0.3,
+        delay: 0.3,
       },
     },
   };

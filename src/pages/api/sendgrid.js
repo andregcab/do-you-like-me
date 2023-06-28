@@ -11,7 +11,6 @@ const sendEmail = async (req, res) => {
       to: `${req.body.to}`,
       from: 'doulikeme@proton.me',
       subject: 'You have a response!',
-      text: 'Hi Kurly!',
       html: '<strong>U CUTE</strong>',
     });
   } catch (error) {

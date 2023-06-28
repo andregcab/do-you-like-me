@@ -11,11 +11,13 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Heading,
+  Highlight,
   Input,
   Text,
   useClipboard,
 } from '@chakra-ui/react';
-import { encodeEmail } from '@utils';
+import { encodeText } from '@utils';
 import styles from '@styles/EmailForm.module.scss';
 
 const schema = yup
@@ -24,6 +26,7 @@ const schema = yup
       .string()
       .email()
       .required('Need your email, we wont sell it. Probably.'),
+    yourName: yup.string().required('Dont be a creep, whos it from?'),
   })
   .required();
 
@@ -39,10 +42,11 @@ const CreateLink = () => {
   const { onCopy, setValue, hasCopied } = useClipboard('');
 
   function onSubmit(values: FormData) {
+    console.log({ values }); // TODO: add name to link
     return new Promise<void>((resolve) => {
       setTimeout(() => {
         const { yourEmail } = values;
-        const encodedEmail = encodeEmail(yourEmail);
+        const encodedEmail = encodeText(yourEmail);
         const link = `http://localhost:3000/note/${encodedEmail}`;
         setValue(link);
         setGeneratedLink(link);
@@ -57,22 +61,50 @@ const CreateLink = () => {
         className={styles.container}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Box maxW="2xl">
+        <Card p={4} maxW="2xl">
+          <Box m={3}>
+            <Heading
+              as="h3"
+              size="lg"
+              fontFamily="inherit"
+              lineHeight="tall"
+            >
+              <Highlight
+                query="sharable link"
+                styles={{
+                  px: '2',
+                  py: '1',
+                  rounded: 'full',
+                  bg: 'orange.100',
+                }}
+              >
+                Create a sharable link using your name and email
+              </Highlight>
+            </Heading>
+          </Box>
           <FormControl isInvalid={!!errors.yourEmail?.message}>
-            <FormLabel margin={2} maxW="80%" htmlFor="yourEmail">
-              Create a sharable link using your email. Send this link
-              to anyone and receive their response via email.
-            </FormLabel>
             <Box display="flex" alignItems="center" flexWrap="wrap">
+              <FormLabel margin={2} maxW="80%" htmlFor="yourName">
+                Name
+              </FormLabel>
+              <Input
+                id="yourName"
+                margin={2}
+                placeholder="secret admirer"
+                {...register('yourName')}
+              />
+              <FormLabel margin={2} maxW="80%" htmlFor="yourEmail">
+                Email
+              </FormLabel>
               <Input
                 id="yourEmail"
                 margin={2}
                 placeholder="email address"
                 {...register('yourEmail')}
               />
-
               <Button
                 ml={2}
+                mt={8}
                 colorScheme="teal"
                 isLoading={isSubmitting}
                 type="submit"
@@ -80,29 +112,33 @@ const CreateLink = () => {
                 Generate link
               </Button>
             </Box>
+            {/* TODO Add another error for name */}
             <FormErrorMessage>
               <span>{errors.yourEmail?.message}</span>
             </FormErrorMessage>
           </FormControl>
-        </Box>
+        </Card>
         <Box maxW="100%">
           {generatedLink && (
             <Card mt={14} variant="elevated">
-              <CardBody flexWrap="wrap">
-                <Text fontSize="xl">Your generated link</Text>
-                <Code
-                  display="initial"
-                  maxW="100%"
-                  whiteSpace="nowrap"
-                  overflow="hidden"
-                  textOverflow="ellipsis"
-                  colorScheme="orange"
-                >
-                  {generatedLink}
-                </Code>
-                <Button ml={2} onClick={onCopy}>
-                  {hasCopied ? 'Copied!' : 'Copy'}
-                </Button>
+              <CardBody>
+                <Text fontSize="xl">
+                  Copy this link and send to whoever you want. Its
+                  kind of like passing a note!
+                </Text>
+                <Box display="flex" alignItems="center">
+                  <Code
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    colorScheme="orange"
+                  >
+                    {generatedLink}
+                  </Code>
+                  <Button ml={2} onClick={onCopy}>
+                    {hasCopied ? 'Copied!' : 'Copy'}
+                  </Button>
+                </Box>
               </CardBody>
             </Card>
           )}
@@ -115,4 +151,3 @@ const CreateLink = () => {
 export default CreateLink;
 
 // TODO: add back button after generate link
-//
