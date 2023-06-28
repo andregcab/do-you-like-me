@@ -16,8 +16,27 @@ const SendButton = ({ checked, show }: SendButtonProps) => {
 
   if (hideButton) return null;
 
-  const handleClick = () => {
-    console.log('sent');
+  const handleClick = async () => {
+    const res = await fetch('/api/sendgrid', {
+      body: JSON.stringify({
+        to: 'cabrerandre@gmail.com',
+        responder: 'dre',
+        response: 'yes',
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    });
+
+    const { error } = await res.json();
+
+    if (error) {
+      console.error(error);
+      // toast with error
+    }
+
+    // trigger toast
   };
 
   return (

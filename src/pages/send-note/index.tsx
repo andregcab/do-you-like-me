@@ -91,6 +91,7 @@ const CreateLink = () => {
               <CardBody flexWrap="wrap">
                 <Text fontSize="xl">Your generated link</Text>
                 <Code
+                  display="initial"
                   maxW="100%"
                   whiteSpace="nowrap"
                   overflow="hidden"
