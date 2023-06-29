@@ -83,25 +83,17 @@ const CreateLink = () => {
             </Heading>
           </Box>
           <FormControl isInvalid={!!errors.yourEmail?.message}>
-            <Box maxW="md">
+            <Box maxW="lg ">
               <Box mb={4}>
                 <FormLabel htmlFor="yourName">Name</FormLabel>
-                <Input
-                  id="yourName"
-                  placeholder="Inigo Montoya"
-                  {...register('yourName')}
-                />
+                <Input id="yourName" {...register('yourName')} />
                 <FormErrorMessage mt={3}>
                   <span>{errors.yourName?.message}</span>
                 </FormErrorMessage>
               </Box>
               <Box mb={4}>
                 <FormLabel htmlFor="yourEmail">Email</FormLabel>
-                <Input
-                  id="yourEmail"
-                  placeholder="email address"
-                  {...register('yourEmail')}
-                />
+                <Input id="yourEmail" {...register('yourEmail')} />
                 <FormErrorMessage mt={3}>
                   <span>{errors.yourEmail?.message}</span>
                 </FormErrorMessage>
