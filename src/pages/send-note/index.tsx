@@ -26,7 +26,7 @@ const schema = yup
       .string()
       .email()
       .required('Need your email, we wont sell it. Probably.'),
-    yourName: yup.string().required('Dont be a creep, whos it from?'),
+    yourName: yup.string().required('Let them know who its from.'),
   })
   .required();
 
@@ -83,28 +83,33 @@ const CreateLink = () => {
             </Heading>
           </Box>
           <FormControl isInvalid={!!errors.yourEmail?.message}>
-            <Box display="flex" alignItems="center" flexWrap="wrap">
-              <FormLabel margin={2} maxW="80%" htmlFor="yourName">
-                Name
-              </FormLabel>
-              <Input
-                id="yourName"
-                margin={2}
-                placeholder="secret admirer"
-                {...register('yourName')}
-              />
-              <FormLabel margin={2} maxW="80%" htmlFor="yourEmail">
-                Email
-              </FormLabel>
-              <Input
-                id="yourEmail"
-                margin={2}
-                placeholder="email address"
-                {...register('yourEmail')}
-              />
+            <Box maxW="md">
+              <Box mb={4}>
+                <FormLabel htmlFor="yourName">Name</FormLabel>
+                <Input
+                  id="yourName"
+                  placeholder="Inigo Montoya"
+                  {...register('yourName')}
+                />
+                <FormErrorMessage mt={3}>
+                  <span>{errors.yourName?.message}</span>
+                </FormErrorMessage>
+              </Box>
+              <Box mb={4}>
+                <FormLabel htmlFor="yourEmail">Email</FormLabel>
+                <Input
+                  id="yourEmail"
+                  placeholder="email address"
+                  {...register('yourEmail')}
+                />
+                <FormErrorMessage mt={3}>
+                  <span>{errors.yourEmail?.message}</span>
+                </FormErrorMessage>
+              </Box>
               <Button
                 ml={2}
-                mt={8}
+                mt={4}
+                fontSize="xl"
                 colorScheme="teal"
                 isLoading={isSubmitting}
                 type="submit"
@@ -112,10 +117,6 @@ const CreateLink = () => {
                 Generate link
               </Button>
             </Box>
-            {/* TODO Add another error for name */}
-            <FormErrorMessage>
-              <span>{errors.yourEmail?.message}</span>
-            </FormErrorMessage>
           </FormControl>
         </Card>
         <Box maxW="100%">
