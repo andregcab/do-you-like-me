@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { AppContext } from '@context';
 import { Option } from '@types';
 import styles from '@styles/Checkbox.module.scss';
 
@@ -9,8 +7,6 @@ interface CheckboxProps {
 }
 
 const Checkbox = ({ option, checked }: CheckboxProps) => {
-  const { setSelectedOption } = useContext(AppContext);
-
   const { label, actions } = option;
 
   return (
@@ -21,8 +17,7 @@ const Checkbox = ({ option, checked }: CheckboxProps) => {
         checked={checked}
         type="checkbox"
         onClick={() => {
-          setSelectedOption(option);
-          actions.forEach((cb) => cb());
+          actions.forEach((action) => action());
         }}
         readOnly
       />

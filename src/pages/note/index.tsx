@@ -1,24 +1,35 @@
-import { Questions } from '@types';
+import { useContext, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { AppContext } from '@context';
+import { Answers, Options } from '@types';
 import OptionsList from '@components/OptionsList';
 import styles from '@styles/PassedNote.module.scss';
 
 const PassedNote = () => {
-  const yesActions = [() => console.log('yes')];
-  const noActions = [() => console.log('no')];
-  const maybeActions = [() => console.log('maybe')];
+  const searchParams = useSearchParams();
+  const { setResponding, setSelectedAnswer } = useContext(AppContext);
 
-  const options = [
-    { label: Questions.YES, actions: yesActions },
-    { label: Questions.NO, actions: noActions },
-    { label: Questions.MAYBE, actions: maybeActions },
+  const yesActions = [() => setSelectedAnswer(Answers.YES)];
+  const noActions = [() => setSelectedAnswer(Answers.NO)];
+  const maybeActions = [() => setSelectedAnswer(Answers.MAYBE)];
+
+  const options: Options = [
+    { label: Answers.YES, actions: yesActions },
+    { label: Answers.NO, actions: noActions },
+    { label: Answers.MAYBE, actions: maybeActions },
   ];
 
+  const senderName = searchParams.get('sn');
+  const senderEmail = searchParams.get('se');
+
+  useEffect(() => {
+    if (senderEmail && senderName) {
+      setResponding(true);
+    }
+  }, [senderEmail, senderName, setResponding]);
+
   return (
-    <OptionsList
-      showSendBtn
-      className={styles.passed_note}
-      options={options}
-    />
+    <OptionsList className={styles.passed_note} options={options} />
   );
 };
 

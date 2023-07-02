@@ -2,33 +2,38 @@ import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AppContext } from '@context';
-import { Questions } from '@types';
+import { Answers, Options } from '@types';
 import OptionsList from '@components/OptionsList';
 import styles from '@styles/LandingPage.module.scss';
 
 const Main = () => {
   const router = useRouter();
-  const { setEditing, setSelectedOption } = useContext(AppContext);
 
-  const askActions = [
-    () => setEditing(true),
-    () => router.push('/send-note'),
-  ];
+  const { setSelectedAnswer } = useContext(AppContext);
+
+  const askActions = [() => router.push('/send-note')];
   const seeActions = [() => router.push('/note')];
-  const whoActions = [() => setEditing(true)];
-  const secretActions = [() => setEditing(true)];
+  const whoActions = [
+    () => {
+      /*page with my links?*/
+    },
+  ];
+  const secretActions = [
+    () => {
+      /* promote climate town? */
+    },
+  ];
 
-  const options = [
-    { label: Questions.ASK, actions: askActions },
-    { label: Questions.SEE, actions: seeActions },
-    { label: Questions.WHO, actions: whoActions },
-    { label: Questions.SECRET, actions: secretActions },
+  const options: Options = [
+    { label: Answers.ASK, actions: askActions },
+    { label: Answers.SEE, actions: seeActions },
+    { label: Answers.WHO, actions: whoActions },
+    { label: Answers.SECRET, actions: secretActions },
   ];
 
   useEffect(() => {
-    setEditing(false);
-    setSelectedOption(null);
-  }, [setEditing, setSelectedOption]);
+    setSelectedAnswer(null);
+  }, [setSelectedAnswer]);
 
   return (
     <>

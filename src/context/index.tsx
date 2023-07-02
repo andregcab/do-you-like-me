@@ -1,38 +1,29 @@
 import { createContext, useState } from 'react';
 import {
-  Option,
-  OptionState,
+  AnswerState,
+  AppContextType,
   PropsWithChildren,
-  SetEditing,
-  SetOption,
 } from '@types';
 
-export type AppContextType = {
-  editing: boolean;
-  setEditing: SetEditing;
-  selectedOption: Option | null;
-  setSelectedOption: SetOption;
-};
-
 export const AppContext = createContext<AppContextType>({
-  editing: false,
-  setEditing: () => {},
-  selectedOption: null,
-  setSelectedOption: () => {},
+  responding: false,
+  setResponding: () => {},
+  selectedAnswer: null,
+  setSelectedAnswer: () => {},
 });
 
 const AppContextProvider = ({ children }: PropsWithChildren) => {
-  const [selectedOption, setSelectedOption] =
-    useState<OptionState>(null);
-  const [editing, setEditing] = useState<boolean>(false);
+  const [responding, setResponding] = useState<boolean>(false);
+  const [selectedAnswer, setSelectedAnswer] =
+    useState<AnswerState>(null);
 
   return (
     <AppContext.Provider
       value={{
-        editing,
-        setEditing,
-        selectedOption,
-        setSelectedOption,
+        responding,
+        setResponding,
+        selectedAnswer,
+        setSelectedAnswer,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
-export enum Questions {
+export enum Answers {
   YES = 'yes',
   NO = 'no',
   MAYBE = 'maybe',
@@ -11,20 +11,27 @@ export enum Questions {
 }
 
 export type Option = {
-  label: Questions;
+  label: Answers;
   actions: Array<() => void>;
 };
 
 export type Options = Array<Option>;
 
-export type OptionState = Option | null;
+export type AnswerState = Answers | null;
 
 export type StateSetter<T> = Dispatch<SetStateAction<T>>;
 
-export type SetOption = StateSetter<Option | null>;
+export type SetAnswer = StateSetter<Answers | null>;
 
-export type SetEditing = StateSetter<boolean>;
+export type setResponding = StateSetter<boolean>;
 
 export type PropsWithChildren = {
   children: ReactNode;
+};
+
+export type AppContextType = {
+  responding: boolean;
+  setResponding: setResponding;
+  selectedAnswer: Answers | null;
+  setSelectedAnswer: SetAnswer;
 };

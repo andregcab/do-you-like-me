@@ -7,14 +7,13 @@ import styles from '@styles/Option.module.scss';
 
 interface OptionProps {
   option: Option;
-  showSendBtn?: boolean;
 }
 
-const Option = ({ option, showSendBtn = false }: OptionProps) => {
-  const { selectedOption } = useContext(AppContext);
+const Option = ({ option }: OptionProps) => {
+  const { selectedAnswer } = useContext(AppContext);
 
   const { label } = option;
-  const checked = selectedOption?.label === label;
+  const checked = selectedAnswer === label;
 
   return (
     <div className={styles.wrapper}>
@@ -22,7 +21,7 @@ const Option = ({ option, showSendBtn = false }: OptionProps) => {
       <label className={styles.label} htmlFor={label}>
         {label}
       </label>
-      <SendButton show={showSendBtn} checked={checked} />
+      <SendButton checked={checked} />
     </div>
   );
 };

@@ -17,22 +17,22 @@ import {
   Text,
   useClipboard,
 } from '@chakra-ui/react';
-import { encodeText } from '@utils';
+import { encodeText, decodeText } from '@utils';
 import styles from '@styles/EmailForm.module.scss';
 
 const schema = yup
   .object({
-    yourEmail: yup
+    senderEmail: yup
       .string()
       .email()
       .required('Need your email, we wont sell it. Probably.'),
-    yourName: yup.string().required('Let them know who its from.'),
+    senderName: yup.string().required('Let them know who its from.'),
   })
   .required();
 
 type FormData = yup.InferType<typeof schema>;
 
-const CreateLink = () => {
+const SendNote = () => {
   const {
     handleSubmit,
     register,
@@ -41,19 +41,24 @@ const CreateLink = () => {
   const [generatedLink, setGeneratedLink] = useState<string>();
   const { onCopy, setValue, hasCopied } = useClipboard('');
 
-  function onSubmit(values: FormData) {
-    console.log({ values }); // TODO: add name to link
+  const onSubmit = (values: FormData) => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
-        const { yourEmail } = values;
-        const encodedEmail = encodeText(yourEmail);
-        const link = `http://localhost:3000/note/${encodedEmail}`;
+        const { senderEmail, senderName } = values;
+        const encodedEmail = encodeText(senderEmail);
+        const encodedName = encodeText(senderName);
+        const link = `http://localhost:3000/note/?se=${encodedEmail}&sn=${encodedName}`;
+
         setValue(link);
         setGeneratedLink(link);
         resolve();
       }, 500);
     });
-  }
+  };
+
+  const formInvalid = !!(
+    errors.senderEmail?.message || errors.senderName?.message
+  );
 
   return (
     <>
@@ -82,20 +87,25 @@ const CreateLink = () => {
               </Highlight>
             </Heading>
           </Box>
-          <FormControl isInvalid={!!errors.yourEmail?.message}>
+          <FormControl isInvalid={formInvalid}>
             <Box maxW="lg ">
               <Box mb={4}>
-                <FormLabel htmlFor="yourName">Name</FormLabel>
-                <Input id="yourName" {...register('yourName')} />
+                <FormLabel htmlFor="senderName">senderName</FormLabel>
+                <Input id="senderName" {...register('senderName')} />
                 <FormErrorMessage mt={3}>
-                  <span>{errors.yourName?.message}</span>
+                  <span>{errors.senderName?.message}</span>
                 </FormErrorMessage>
               </Box>
               <Box mb={4}>
-                <FormLabel htmlFor="yourEmail">Email</FormLabel>
-                <Input id="yourEmail" {...register('yourEmail')} />
+                <FormLabel htmlFor="senderEmail">
+                  senderEmail
+                </FormLabel>
+                <Input
+                  id="senderEmail"
+                  {...register('senderEmail')}
+                />
                 <FormErrorMessage mt={3}>
-                  <span>{errors.yourEmail?.message}</span>
+                  <span>{errors.senderEmail?.message}</span>
                 </FormErrorMessage>
               </Box>
               <Button
@@ -125,6 +135,7 @@ const CreateLink = () => {
                     overflow="hidden"
                     textOverflow="ellipsis"
                     colorScheme="orange"
+                    maxW="lg"
                   >
                     {generatedLink}
                   </Code>
@@ -141,6 +152,6 @@ const CreateLink = () => {
   );
 };
 
-export default CreateLink;
+export default SendNote;
 
 // TODO: add back button after generate link
