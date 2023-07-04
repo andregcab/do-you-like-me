@@ -1,7 +1,9 @@
-import { useContext } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import {
   Button,
+  Input,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -12,6 +14,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { AppContext } from '@context';
+import { decodeText } from '@utils';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
 
 interface SendModalProps {
@@ -20,14 +23,20 @@ interface SendModalProps {
 }
 
 const SendModal = ({ isOpen, onClose }: SendModalProps) => {
-  const { responding } = useContext(AppContext);
+  const searchParams = useSearchParams();
+  const { selectedAnswer } = useContext(AppContext);
+
+  const [responderName, setResponderName] = useState('');
+
+  const senderName = searchParams.get('sn')!;
+  const senderEmail = searchParams.get('se')!;
 
   const handleClick = async () => {
     const res = await fetch('/api/sendgrid', {
       body: JSON.stringify({
-        to: 'cabrerandre@gmail.com',
-        responder: 'dre',
-        response: 'yes',
+        to: decodeText(senderEmail),
+        responder: responderName,
+        response: selectedAnswer,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -45,7 +54,9 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
     // trigger toast
   };
 
-  if (!responding) return null;
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setResponderName(e.target.value);
+  };
 
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
@@ -54,10 +65,16 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
         backdropFilter="blur(2px) hue-rotate(20deg)"
       />
       <ModalContent>
-        <ModalHeader>Let them know!</ModalHeader>
+        <ModalHeader>{`Let ${decodeText(
+          senderName
+        )} know how you feel`}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text>Custom backdrop filters!</Text>
+          <Input
+            value={responderName}
+            onChange={handleInputChange}
+            placeholder="your name"
+          />
         </ModalBody>
         <ModalFooter>
           <Button mr={3} onClick={onClose}>
