@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { AppContext } from '@context';
 import { Option } from '@types';
 import Checkbox from '@components/Checkbox';
-import SendButton from '@components/SendButton';
 import styles from '@styles/Option.module.scss';
 
 interface OptionProps {
@@ -21,7 +20,6 @@ const Option = ({ option }: OptionProps) => {
       <label className={styles.label} htmlFor={label}>
         {label}
       </label>
-      <SendButton checked={checked} />
     </div>
   );
 };

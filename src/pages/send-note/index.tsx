@@ -151,5 +151,3 @@ const SendNote = () => {
 };
 
 export default SendNote;
-
-// TODO: add back button after generate link
