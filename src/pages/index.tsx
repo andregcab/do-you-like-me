@@ -11,17 +11,22 @@ const Main = () => {
 
   const { setSelectedAnswer } = useContext(AppContext);
 
-  const askActions = [() => router.push('/send-note')];
+  const linkToExternal = (link: string) => {
+    setTimeout(() => window.open(link, '_blank'), 500);
+  };
+
+  const askActions = [
+    () => [setSelectedAnswer(Answers.ASK), router.push('/send-note')],
+  ];
   const seeActions = [() => router.push('/note')];
   const whoActions = [
-    () => {
-      /*page with my links?*/
-    },
+    () => setSelectedAnswer(Answers.WHO),
+    () =>
+      linkToExternal('https://www.linkedin.com/in/andregcabrera/'),
   ];
   const secretActions = [
-    () => {
-      /* promote climate town? */
-    },
+    () => setSelectedAnswer(Answers.SECRET),
+    () => linkToExternal('https://www.climatetownproductions.com/'),
   ];
 
   const options: Options = [
@@ -38,7 +43,7 @@ const Main = () => {
   return (
     <>
       <Head>
-        <title>Do you like me?</title>
+        <title>Do u like me?</title>
         <meta
           name="description"
           content="An app for seeing if someone likes you"

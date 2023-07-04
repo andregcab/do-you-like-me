@@ -17,7 +17,7 @@ import {
   Text,
   useClipboard,
 } from '@chakra-ui/react';
-import { encodeText, decodeText } from '@utils';
+import { encodeText } from '@utils';
 import styles from '@styles/EmailForm.module.scss';
 
 const schema = yup
@@ -71,8 +71,8 @@ const SendNote = () => {
             <Heading
               as="h3"
               size="lg"
-              fontFamily="inherit"
               lineHeight="tall"
+              fontFamily="inherit"
             >
               <Highlight
                 query="sharable link"
@@ -90,16 +90,14 @@ const SendNote = () => {
           <FormControl isInvalid={formInvalid}>
             <Box maxW="lg ">
               <Box mb={4}>
-                <FormLabel htmlFor="senderName">senderName</FormLabel>
+                <FormLabel htmlFor="senderName">Name</FormLabel>
                 <Input id="senderName" {...register('senderName')} />
                 <FormErrorMessage mt={3}>
                   <span>{errors.senderName?.message}</span>
                 </FormErrorMessage>
               </Box>
               <Box mb={4}>
-                <FormLabel htmlFor="senderEmail">
-                  senderEmail
-                </FormLabel>
+                <FormLabel htmlFor="senderEmail">Email</FormLabel>
                 <Input
                   id="senderEmail"
                   {...register('senderEmail')}
@@ -112,9 +110,9 @@ const SendNote = () => {
                 ml={2}
                 mt={4}
                 fontSize="xl"
+                type="submit"
                 colorScheme="teal"
                 isLoading={isSubmitting}
-                type="submit"
               >
                 Generate link
               </Button>
@@ -131,11 +129,11 @@ const SendNote = () => {
                 </Text>
                 <Box display="flex" alignItems="center">
                   <Code
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    colorScheme="orange"
                     maxW="lg"
+                    overflow="hidden"
+                    whiteSpace="nowrap"
+                    colorScheme="orange"
+                    textOverflow="ellipsis"
                   >
                     {generatedLink}
                   </Code>

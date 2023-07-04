@@ -1,7 +1,8 @@
-// import Image from 'next/image';
+import Image from 'next/image';
+import Link from 'next/link';
 import { PropsWithChildren } from '@types';
 import styles from '@styles/NotebookPaper.module.scss';
-// import uwuImage from '@public/Stylized_uwu_emoticon.png';
+import backIcon from '@public/noun-hand-drawn-arrow-2930303.png';
 
 const NotebookPaper = ({ children }: PropsWithChildren) => {
   return (
@@ -13,8 +14,10 @@ const NotebookPaper = ({ children }: PropsWithChildren) => {
       </div>
       <div className={`${styles.r_margin} ${styles.margin}`}></div>
       <header>
+        <Link className={styles.homeBtn} href="/">
+          <Image src={backIcon} alt="back" />
+        </Link>
         <span className={styles.page_title}>Do u like me?</span>
-        {/* <Image src={uwuImage} alt="UwU" width={100} height={50} /> */}
       </header>
       {children}
     </div>

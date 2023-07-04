@@ -60,6 +60,14 @@
   bottom: 30px;
 }
 
+.homeBtn {
+  position: fixed;
+  display: block;
+  top: 3rem;
+  left: 4rem;
+  width: 100px;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .page header {
     padding-left: 28%;
