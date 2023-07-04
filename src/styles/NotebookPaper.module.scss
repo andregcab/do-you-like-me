@@ -63,9 +63,9 @@
 .homeBtn {
   position: fixed;
   display: block;
-  top: 3rem;
+  top: 2.5rem;
   left: 4rem;
-  width: 100px;
+  width: 8rem;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -74,6 +74,10 @@
   }
   .page_title {
     font-size: 5.5rem;
+  }
+  .homeBtn {
+    left: 3.5rem;
+    width: 6rem;
   }
 }
 
@@ -84,6 +88,11 @@
   .page_title {
     font-size: 4rem;
   }
+  .homeBtn {
+    top: 2rem;
+    left: 3.5rem;
+    width: 5rem;
+  }
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -92,6 +101,10 @@
   }
   .page_title {
     font-size: 3rem;
+  }
+  .homeBtn {
+    top: 28rem;
+    width: 4rem;
   }
 }
 

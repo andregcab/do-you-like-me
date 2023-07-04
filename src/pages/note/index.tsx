@@ -5,7 +5,7 @@ import { Answers, Options } from '@types';
 import OptionsList from '@components/OptionsList';
 import styles from '@styles/PassedNote.module.scss';
 
-const PassedNote = () => {
+const Note = () => {
   const searchParams = useSearchParams();
   const { setResponding, setSelectedAnswer } = useContext(AppContext);
 
@@ -33,4 +33,4 @@ const PassedNote = () => {
   );
 };
 
-export default PassedNote;
+export default Note;

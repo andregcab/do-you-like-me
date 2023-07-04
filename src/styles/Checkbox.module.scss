@@ -126,7 +126,7 @@
     margin: 0 calc($checkbox-size-md * 0.25);
     width: $checkbox-size-md;
     height: $checkbox-size-md;
-    border: calc($checkbox-size-md * 0.125) solid $pencil-color;
+    border: calc($checkbox-size-md * 0.125) solid $checkbox-color;
   }
   .tick {
     right: calc($checkbox-size * -0.4);
@@ -141,7 +141,7 @@
     margin: 0 calc($checkbox-size-sm * 0.25);
     width: $checkbox-size-sm;
     height: $checkbox-size-sm;
-    border: calc($checkbox-size-sm * 0.125) solid $pencil-color;
+    border: calc($checkbox-size-sm * 0.125) solid $checkbox-color;
   }
   .tick {
     right: calc($checkbox-size * -0.25);
@@ -151,12 +151,12 @@
     &::before {
       left: calc($checkbox-size * -0.125);
       bottom: calc($checkbox-size * -0.25);
-      border: calc($checkbox-size * 0.125) solid $pencil-color;
+      border: calc($checkbox-size * 0.125) solid $checkbox-color;
     }
     &::after {
       right: calc($checkbox-size * -0.25);
       top: calc($checkbox-size * -0.125);
-      border: calc($checkbox-size * 0.125) solid $pencil-color;
+      border: calc($checkbox-size * 0.125) solid $checkbox-color;
     }
   }
 }

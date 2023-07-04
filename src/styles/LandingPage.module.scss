@@ -1,10 +1,8 @@
 .landing_page {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
   flex-direction: column;
   margin-top: 6rem;
-  margin-left: 4%;
   > div {
     margin: 2.5rem;
     label {
@@ -15,7 +13,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .landing_page {
-    margin-top: 6.5rem;
+    margin-top: 8rem;
     > div {
       margin: 1.8rem;
       label {
@@ -27,6 +25,7 @@
 
 @media (max-width: 768px) {
   .landing_page {
+    margin-top: 5rem;
     > div {
       label {
         font-size: 2rem;
@@ -37,6 +36,7 @@
 
 @media only screen and (max-device-width: 480px) {
   .landing_page {
+    margin-top: 4rem;
     > div {
       margin: 2rem 0;
       label {
