@@ -1,4 +1,5 @@
 import { ChangeEvent, useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -11,7 +12,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Text,
+  useToast,
 } from '@chakra-ui/react';
 import { AppContext } from '@context';
 import { decodeText } from '@utils';
@@ -23,20 +24,25 @@ interface SendModalProps {
 }
 
 const SendModal = ({ isOpen, onClose }: SendModalProps) => {
+  const toast = useToast();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { selectedAnswer } = useContext(AppContext);
-
+  const [loading, setLoading] = useState(false);
   const [responderName, setResponderName] = useState('');
 
-  const senderName = searchParams.get('sn')!;
+  const encodedSenderName = searchParams.get('sn')!;
+  const senderName = decodeText(encodedSenderName);
   const senderEmail = searchParams.get('se')!;
 
   const handleClick = async () => {
+    setLoading(true);
     const res = await fetch('/api/sendgrid', {
       body: JSON.stringify({
         to: decodeText(senderEmail),
-        responder: responderName,
         response: selectedAnswer,
+        responder: responderName,
+        senderName,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -48,10 +54,24 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
 
     if (error) {
       console.error(error);
-      // toast with error
+      setLoading(false);
+      return toast({
+        title: `Oops! Something went wrong (╥﹏╥)`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
 
-    // trigger toast
+    setLoading(false);
+    onClose();
+    return toast({
+      title: `Thanks! We'll let ${senderName} know (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧`,
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+      onCloseComplete: () => router.push('/'),
+    });
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -65,15 +85,13 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
         backdropFilter="blur(2px) hue-rotate(20deg)"
       />
       <ModalContent>
-        <ModalHeader>{`Let ${decodeText(
-          senderName
-        )} know how you feel`}</ModalHeader>
+        <ModalHeader>{`Respond to ${senderName}`}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Input
             value={responderName}
             onChange={handleInputChange}
-            placeholder="your name"
+            placeholder="your name (optional)"
           />
         </ModalBody>
         <ModalFooter>
@@ -82,10 +100,11 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
           </Button>
           <Button
             display="flex"
-            justifyContent="space-between"
             width="5.8rem"
-            colorScheme="whatsapp"
+            justifyContent="space-between"
             variant="outline"
+            colorScheme="whatsapp"
+            isLoading={loading}
             onClick={handleClick}
           >
             Send

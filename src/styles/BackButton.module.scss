@@ -1,0 +1,47 @@
+.backBtn {
+  position: fixed;
+  display: block;
+  top: 2.5rem;
+  left: 4rem;
+  width: 8rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .page header {
+    padding-left: 28%;
+  }
+  .page_title {
+    font-size: 5.5rem;
+  }
+  .backBtn {
+    left: 3.5rem;
+    width: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page header {
+    padding-left: 28%;
+  }
+  .page_title {
+    font-size: 4rem;
+  }
+  .backBtn {
+    top: 2rem;
+    left: 3.5rem;
+    width: 5rem;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .page header {
+    padding-left: 20%;
+  }
+  .page_title {
+    font-size: 3rem;
+  }
+  .backBtn {
+    top: 28rem;
+    width: 4rem;
+  }
+}

@@ -17,6 +17,7 @@ import {
   Text,
   useClipboard,
 } from '@chakra-ui/react';
+import BackButton from '@components/BackButton';
 import { encodeText } from '@utils';
 import styles from '@styles/EmailForm.module.scss';
 
@@ -62,6 +63,7 @@ const SendNote = () => {
 
   return (
     <>
+      <BackButton />
       <form
         className={styles.container}
         onSubmit={handleSubmit(onSubmit)}
