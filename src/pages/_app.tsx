@@ -15,7 +15,7 @@ export default function App({
       <AppContextProvider>
         <TransitionWrapper>
           <NotebookPaper>
-            <Component key={router.pathname} {...pageProps} />;
+            <Component key={router.asPath} {...pageProps} />;
           </NotebookPaper>
         </TransitionWrapper>
       </AppContextProvider>
