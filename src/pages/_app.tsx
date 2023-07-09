@@ -14,7 +14,7 @@ export default function App({
     <ChakraProvider>
       <AppContextProvider>
         <TransitionWrapper>
-          <NotebookPaper>
+          <NotebookPaper key={router.asPath}>
             <Component key={router.asPath} {...pageProps} />;
           </NotebookPaper>
         </TransitionWrapper>
