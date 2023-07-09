@@ -18,6 +18,7 @@ import {
   useClipboard,
 } from '@chakra-ui/react';
 import BackButton from '@components/BackButton';
+import HeartDoodle from '@components/HeartDoodle';
 import { encodeText } from '@utils';
 import styles from '@styles/EmailForm.module.scss';
 
@@ -64,6 +65,7 @@ const SendNote = () => {
 
   return (
     <>
+      <HeartDoodle />
       <BackButton />
       <form
         className={styles.container}

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AppContext } from '@context';
 import { Answers, Options } from '@types';
+import HeartDoodle from '@components/HeartDoodle';
 import OptionsList from '@components/OptionsList';
 import styles from '@styles/LandingPage.module.scss';
 
@@ -54,6 +55,7 @@ const Main = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <HeartDoodle />
       <OptionsList
         className={styles.landing_page}
         options={options}

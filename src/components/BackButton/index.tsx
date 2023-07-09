@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '@styles/BackButton.module.scss';
-import backIcon from '@public/noun-hand-drawn-arrow-2930303.png';
+import backIcon from '@public/noun-hand-drawn-arrow-2930303.svg';
 
 const BACK_BTN_ROUTES = ['/note', '/send-note'];
 
