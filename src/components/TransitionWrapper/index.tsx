@@ -28,7 +28,11 @@ const Transition = ({ children }: TransitionProps) => {
 
   return (
     <div className="transition-wrapper">
-      <AnimatePresence initial={false}>
+      <AnimatePresence
+        mode="wait"
+        initial={false}
+        onExitComplete={() => window.scrollTo(0, 0)}
+      >
         <motion.div
           key={asPath}
           variants={variants}
