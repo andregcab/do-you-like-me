@@ -44,11 +44,12 @@ const SendNote = () => {
 
   const onSubmit = (values: FormData) => {
     return new Promise<void>((resolve) => {
+      const baseAppURL = process.env.NEXT_PUBLIC_APP_BASE_URL;
       setTimeout(() => {
         const { senderEmail, senderName } = values;
         const encodedEmail = encodeText(senderEmail);
         const encodedName = encodeText(senderName);
-        const link = `http://localhost:3000/note/?se=${encodedEmail}&sn=${encodedName}`;
+        const link = `${baseAppURL}/note/?se=${encodedEmail}&sn=${encodedName}`;
 
         setValue(link);
         setGeneratedLink(link);

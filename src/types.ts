@@ -10,6 +10,15 @@ export enum Answers {
   SECRET = 'A secret fourth thing',
 }
 
+export type AnswerState = Answers | null;
+
+export type AppContextType = {
+  responding: boolean;
+  setResponding: SetResponding;
+  selectedAnswer: Answers | null;
+  setSelectedAnswer: SetAnswer;
+};
+
 export type Option = {
   label: Answers;
   actions: Array<() => void>;
@@ -17,21 +26,12 @@ export type Option = {
 
 export type Options = Array<Option>;
 
-export type AnswerState = Answers | null;
-
-export type StateSetter<T> = Dispatch<SetStateAction<T>>;
-
-export type SetAnswer = StateSetter<Answers | null>;
-
-export type setResponding = StateSetter<boolean>;
-
 export type PropsWithChildren = {
   children: ReactNode;
 };
 
-export type AppContextType = {
-  responding: boolean;
-  setResponding: setResponding;
-  selectedAnswer: Answers | null;
-  setSelectedAnswer: SetAnswer;
-};
+export type SetAnswer = StateSetter<Answers | null>;
+
+export type SetResponding = StateSetter<boolean>;
+
+export type StateSetter<T> = Dispatch<SetStateAction<T>>;

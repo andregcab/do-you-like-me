@@ -4,7 +4,7 @@ import sendgrid from '@sendgrid/mail';
 import { render } from '@react-email/render';
 import EmailTemplate from '../../components/EmailTemplate';
 
-sendgrid.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY);
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 const emailTemplate = (body) =>
   render(<EmailTemplate {...body} />, {
