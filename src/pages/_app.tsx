@@ -5,13 +5,17 @@ import TransitionWrapper from '@components/TransitionWrapper';
 import NotebookPaper from '@components/NotebookPaper';
 import '@styles/global.scss';
 
-export default function App({ Component }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+  router,
+}: AppProps) {
   return (
     <ChakraProvider>
       <AppContextProvider>
         <TransitionWrapper>
           <NotebookPaper>
-            <Component />;
+            <Component key={router.pathname} {...pageProps} />;
           </NotebookPaper>
         </TransitionWrapper>
       </AppContextProvider>
