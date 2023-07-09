@@ -28,7 +28,7 @@ const Transition = ({ children }: TransitionProps) => {
 
   return (
     <div className="transition-wrapper">
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         <motion.div
           key={asPath}
           variants={variants}
