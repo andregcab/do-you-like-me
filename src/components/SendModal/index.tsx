@@ -68,7 +68,7 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
     return toast({
       title: `Thanks! We'll let ${senderName} know (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧`,
       status: 'success',
-      duration: 10000,
+      duration: 5000,
       isClosable: true,
       onCloseComplete: () => router.push('/'),
     });

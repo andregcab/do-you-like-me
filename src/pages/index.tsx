@@ -10,7 +10,7 @@ import styles from '@styles/LandingPage.module.scss';
 const Main = () => {
   const router = useRouter();
 
-  const { setSelectedAnswer } = useContext(AppContext);
+  const { setSelectedAnswer, setResponding } = useContext(AppContext);
 
   const linkToExternal = (link: string) => {
     setTimeout(() => window.open(link, '_blank'), 500);
@@ -39,7 +39,8 @@ const Main = () => {
 
   useEffect(() => {
     setSelectedAnswer(null);
-  }, [setSelectedAnswer]);
+    setResponding(false);
+  }, [setSelectedAnswer, setResponding]);
 
   return (
     <>
