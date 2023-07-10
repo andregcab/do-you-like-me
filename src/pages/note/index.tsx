@@ -4,7 +4,7 @@ import { useDisclosure } from '@chakra-ui/react';
 import { AppContext } from '@context';
 import { Answers, Options } from '@types';
 import BackButton from '@components/BackButton';
-import HeartDoodle from '@components/HeartDoodle';
+// import HeartDoodle from '@components/HeartDoodle';
 import OptionsList from '@components/OptionsList';
 import SendModal from '@components/SendModal';
 import styles from '@styles/PassedNote.module.scss';
@@ -52,7 +52,7 @@ const Note = () => {
 
   return (
     <>
-      <HeartDoodle />
+      {/* <HeartDoodle /> */}
       <BackButton />
       <OptionsList className={styles.passed_note} options={options} />
       <SendModal onClose={onClose} isOpen={isOpen} />

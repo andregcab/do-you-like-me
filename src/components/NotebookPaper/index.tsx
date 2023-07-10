@@ -1,4 +1,5 @@
 import { PropsWithChildren } from '@types';
+import HeartDoodle from '@components/HeartDoodle';
 import styles from '@styles/NotebookPaper.module.scss';
 
 const NotebookPaper = ({ children }: PropsWithChildren) => {
@@ -14,6 +15,7 @@ const NotebookPaper = ({ children }: PropsWithChildren) => {
         <span className={styles.page_title}>Do u like me?</span>
       </header>
       {children}
+      <HeartDoodle />
     </div>
   );
 };

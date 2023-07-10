@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { AppContext } from '@context';
 import BackButton from '@components/BackButton';
-import HeartDoodle from '@components/HeartDoodle';
+// import HeartDoodle from '@components/HeartDoodle';
 import { encodeText } from '@utils';
 import styles from '@styles/EmailForm.module.scss';
 
@@ -71,7 +71,7 @@ const SendNote = () => {
 
   return (
     <>
-      <HeartDoodle />
+      {/* <HeartDoodle /> */}
       <BackButton />
       <form
         className={styles.container}
