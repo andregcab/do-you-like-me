@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 8rem;
-  height: 66vh;
+  height: 70vh;
   overflow: scroll;
   padding-bottom: 2rem;
   input,
@@ -19,7 +19,7 @@
 
 @media (max-width: 768px) {
   .container {
-    margin-top: 16%;
+    margin-top: 2.5rem;
     input,
     span,
     label {

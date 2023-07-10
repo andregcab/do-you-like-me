@@ -132,7 +132,7 @@ const SendNote = () => {
         </Card>
         <Box maxW="100%">
           {generatedLink && (
-            <Card mt={14} variant="elevated">
+            <Card mt={10} variant="elevated">
               <CardBody>
                 <Text fontSize="xl">
                   Copy this link and send to whoever you want. Its
