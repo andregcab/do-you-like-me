@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -17,6 +17,7 @@ import {
   Text,
   useClipboard,
 } from '@chakra-ui/react';
+import { AppContext } from '@context';
 import BackButton from '@components/BackButton';
 import HeartDoodle from '@components/HeartDoodle';
 import { encodeText } from '@utils';
@@ -40,6 +41,7 @@ const SendNote = () => {
     register,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+  const { setSelectedAnswer } = useContext(AppContext);
   const [generatedLink, setGeneratedLink] = useState<string>();
   const { onCopy, setValue, hasCopied } = useClipboard('');
 
@@ -62,6 +64,10 @@ const SendNote = () => {
   const formInvalid = !!(
     errors.senderEmail?.message || errors.senderName?.message
   );
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [setSelectedAnswer]);
 
   return (
     <>

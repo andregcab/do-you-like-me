@@ -2,17 +2,46 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  margin-top: 8rem;
+  margin-top: 6rem;
+  > div {
+    margin: 2.5rem;
+    label {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .passed_note {
+    margin-top: 8rem;
+    > div {
+      margin: 1.8rem;
+      label {
+        font-size: 3rem;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
   .passed_note {
     margin-top: 4rem;
+    > div {
+      label {
+        font-size: 2rem;
+      }
+    }
   }
 }
 
 @media only screen and (max-device-width: 480px) {
   .passed_note {
-    margin-top: 3rem;
+    margin-top: 4rem;
+    > div {
+      margin: 2rem 0;
+      label {
+        margin-left: 1rem;
+      }
+    }
   }
 }

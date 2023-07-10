@@ -17,9 +17,13 @@ const Main = () => {
   };
 
   const askActions = [
-    () => [setSelectedAnswer(Answers.ASK), router.push('/send-note')],
+    () => setSelectedAnswer(Answers.ASK),
+    () => router.push('/send-note'),
   ];
-  const seeActions = [() => router.push('/note')];
+  const seeActions = [
+    () => setSelectedAnswer(Answers.SEE),
+    () => router.push('/note'),
+  ];
   const whoActions = [
     () => setSelectedAnswer(Answers.WHO),
     () =>

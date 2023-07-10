@@ -1,8 +1,8 @@
 .backBtn {
   position: fixed;
   display: block;
-  top: 2.5rem;
-  left: 4rem;
+  bottom: 4%;
+  left: 6%;
   width: 8rem;
 }
 
@@ -11,11 +11,10 @@
     padding-left: 28%;
   }
   .page_title {
-    font-size: 5.5rem;
+    font-size: 5rem;
   }
   .backBtn {
-    left: 3.5rem;
-    width: 6rem;
+    width: 5rem;
   }
 }
 
@@ -27,8 +26,6 @@
     font-size: 4rem;
   }
   .backBtn {
-    top: 2rem;
-    left: 3.5rem;
     width: 5rem;
   }
 }
@@ -41,7 +38,6 @@
     font-size: 3rem;
   }
   .backBtn {
-    top: 28rem;
-    width: 4rem;
+    bottom: 5%;
   }
 }

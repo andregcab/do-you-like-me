@@ -16,12 +16,14 @@ const sendEmail = async (req, res) => {
     ? req.body.responder
     : 'anon';
 
+  const body = { ...req.body, responder };
+
   try {
     await sendgrid.send({
       to: `${req.body.to}`,
       from: 'doulikeme@proton.me',
       subject: `You have a response from ${responder}!`,
-      html: emailTemplate(req.body),
+      html: emailTemplate(body),
     });
   } catch (error) {
     return res

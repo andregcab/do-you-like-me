@@ -44,10 +44,11 @@ const Note = () => {
   const senderEmail = searchParams.get('se');
 
   useEffect(() => {
+    setSelectedAnswer(null);
     if (senderEmail && senderName) {
       setResponding(true);
     }
-  }, [senderEmail, senderName, setResponding]);
+  }, [senderEmail, senderName, setResponding, setSelectedAnswer]);
 
   return (
     <>

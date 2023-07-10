@@ -1,8 +1,28 @@
 .heartDoodle {
   position: absolute;
   pointer-events: none;
-  top: 78%;
-  left: 88%;
+  bottom: 5%;
+  right: 5%;
   transform: rotate(-5deg);
-  width: 140px;
+  width: 7rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .heartDoodle {
+    bottom: 4%;
+    width: 5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heartDoodle {
+    bottom: 4%;
+    width: 5rem;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .heartDoodle {
+    bottom: 5%;
+  }
 }

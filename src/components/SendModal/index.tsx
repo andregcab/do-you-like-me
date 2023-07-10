@@ -66,7 +66,7 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
     setLoading(false);
     onClose();
     return toast({
-      title: `Thanks! We'll let ${senderName} know (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧`,
+      title: `Thanks! We'll let ${senderName} know`,
       status: 'success',
       duration: 5000,
       isClosable: true,
