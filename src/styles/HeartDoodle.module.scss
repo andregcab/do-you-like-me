@@ -26,3 +26,9 @@
     bottom: 8%;
   }
 }
+
+@media screen and (max-height: 850px) {
+  .heartDoodle {
+    bottom: 10%;
+  }
+}

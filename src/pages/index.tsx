@@ -4,25 +4,28 @@ import Head from 'next/head';
 import { AppContext } from '@context';
 import { Answers, Options } from '@types';
 // import HeartDoodle from '@components/HeartDoodle';
+import { delay } from '@utils';
 import OptionsList from '@components/OptionsList';
 import styles from '@styles/LandingPage.module.scss';
 
 const Main = () => {
   const router = useRouter();
-
   const { setSelectedAnswer, setResponding } = useContext(AppContext);
 
   const linkToExternal = (link: string) => {
-    setTimeout(() => window.open(link, '_blank'), 500);
+    delay(() => window.open(link, '_blank'));
+  };
+  const linkToInternal = (link: string) => {
+    delay(() => router.push(link));
   };
 
   const askActions = [
     () => setSelectedAnswer(Answers.ASK),
-    () => router.push('/send-note'),
+    () => linkToInternal('/send-note'),
   ];
   const seeActions = [
     () => setSelectedAnswer(Answers.SEE),
-    () => router.push('/note'),
+    () => linkToInternal('/note'),
   ];
   const whoActions = [
     () => setSelectedAnswer(Answers.WHO),
