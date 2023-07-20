@@ -28,7 +28,7 @@ const Transition = ({ children, ...rest }: TransitionProps) => {
 
   return (
     <div className="transition-wrapper">
-      <AnimatePresence initial={false} mode="popLayout">
+      <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={asPath}
           variants={variants}
