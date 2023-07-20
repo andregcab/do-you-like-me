@@ -5,7 +5,7 @@ export enum Answers {
   NO = 'no',
   MAYBE = 'maybe',
   ASK = 'Ask someone if they like you',
-  SEE = 'See the note page',
+  SEE = 'Preview the note page',
   WHO = 'Who made this thing anyway?',
   SECRET = 'A secret fourth thing',
 }

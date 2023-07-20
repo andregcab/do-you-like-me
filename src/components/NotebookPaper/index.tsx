@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PropsWithChildren } from '@types';
 import HeartDoodle from '@components/HeartDoodle';
 import styles from '@styles/NotebookPaper.module.scss';
@@ -11,9 +12,11 @@ const NotebookPaper = ({ children }: PropsWithChildren) => {
         <div className={`${styles.hole} ${styles.third_hole}`}></div>
       </div>
       <div className={`${styles.r_margin} ${styles.margin}`}></div>
-      <header>
-        <span className={styles.page_title}>Do u like me?</span>
-      </header>
+      <Link href="/">
+        <header>
+          <span className={styles.page_title}>Do u like me?</span>
+        </header>
+      </Link>
       {children}
       <HeartDoodle />
     </div>

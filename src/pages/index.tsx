@@ -29,8 +29,7 @@ const Main = () => {
   ];
   const whoActions = [
     () => setSelectedAnswer(Answers.WHO),
-    () =>
-      linkToExternal('https://www.linkedin.com/in/andregcabrera/'),
+    () => linkToExternal('https://github.com/andregcab'),
   ];
   const secretActions = [
     () => setSelectedAnswer(Answers.SECRET),
