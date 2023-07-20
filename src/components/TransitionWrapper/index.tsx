@@ -5,7 +5,7 @@ type TransitionProps = {
   children: React.ReactElement;
 };
 
-const Transition = ({ children }: TransitionProps) => {
+const Transition = ({ children, ...rest }: TransitionProps) => {
   const { asPath } = useRouter();
 
   const variants = {
@@ -28,13 +28,14 @@ const Transition = ({ children }: TransitionProps) => {
 
   return (
     <div className="transition-wrapper">
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} mode="popLayout">
         <motion.div
           key={asPath}
           variants={variants}
           animate="in"
           initial="out"
           exit="out"
+          {...rest}
         >
           {children}
         </motion.div>
