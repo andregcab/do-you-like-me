@@ -21,7 +21,7 @@ const sendEmail = async (req, res) => {
   try {
     await sendgrid.send({
       to: `${req.body.to}`,
-      from: 'doulikeme@proton.me',
+      from: 'doulikemebot@gmail.com',
       subject: `You have a response from ${responder}!`,
       html: emailTemplate(body),
     });

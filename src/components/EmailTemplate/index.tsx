@@ -56,7 +56,7 @@ export const EmailTemplate = ({
             pX={10}
             pY={10}
             style={button}
-            href={process.env.NEXT_PUBLIC_APP_BASE_URL}
+            href="https://doulikeme.online/"
           >
             Send your own note
           </Button>
