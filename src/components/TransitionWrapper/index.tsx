@@ -27,19 +27,17 @@ const Transition = ({ children }: TransitionProps) => {
   };
 
   return (
-    <div className="transition-wrapper">
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={asPath}
-          variants={variants}
-          animate="in"
-          initial="out"
-          exit="out"
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </div>
+    <AnimatePresence initial={false}>
+      <motion.div
+        key={asPath}
+        variants={variants}
+        animate="in"
+        initial="out"
+        exit="out"
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
