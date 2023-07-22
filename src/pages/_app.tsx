@@ -9,11 +9,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <AppContextProvider>
-        <TransitionWrapper>
-          <NotebookPaper>
-            <Component {...pageProps} />;
-          </NotebookPaper>
-        </TransitionWrapper>
+        {/* <TransitionWrapper> */}
+        <NotebookPaper>
+          <Component {...pageProps} />;
+        </NotebookPaper>
+        {/* </TransitionWrapper> */}
       </AppContextProvider>
     </ChakraProvider>
   );
