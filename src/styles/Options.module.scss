@@ -1,4 +1,4 @@
-.passed_note {
+.options {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .passed_note {
+  .options {
     margin-top: 8rem;
     > div {
       margin: 1.8rem;
@@ -24,8 +24,8 @@
 }
 
 @media (max-width: 768px) {
-  .passed_note {
-    margin-top: 4rem;
+  .options {
+    margin-top: 5rem;
     > div {
       label {
         font-size: 2rem;
@@ -35,12 +35,13 @@
 }
 
 @media only screen and (max-device-width: 480px) {
-  .passed_note {
-    margin-top: 3rem;
+  .options {
+    margin-top: 4rem;
     > div {
       margin: 2rem 0;
       label {
         margin-left: 1rem;
+        font-size: 1.2rem;
       }
     }
   }

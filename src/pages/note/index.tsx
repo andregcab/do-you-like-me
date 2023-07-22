@@ -6,7 +6,6 @@ import { Answers, Options } from '@types';
 // import HeartDoodle from '@components/HeartDoodle';
 import OptionsList from '@components/OptionsList';
 import SendModal from '@components/SendModal';
-import styles from '@styles/PassedNote.module.scss';
 
 const Note = () => {
   const searchParams = useSearchParams();
@@ -52,7 +51,7 @@ const Note = () => {
   return (
     <>
       {/* <HeartDoodle /> */}
-      <OptionsList className={styles.passed_note} options={options} />
+      <OptionsList options={options} />
       <SendModal onClose={onClose} isOpen={isOpen} />
     </>
   );

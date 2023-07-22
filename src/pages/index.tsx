@@ -6,7 +6,6 @@ import { Answers, Options } from '@types';
 // import HeartDoodle from '@components/HeartDoodle';
 import { delay } from '@utils';
 import OptionsList from '@components/OptionsList';
-import styles from '@styles/LandingPage.module.scss';
 
 const Main = () => {
   const router = useRouter();
@@ -63,10 +62,7 @@ const Main = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <HeartDoodle /> */}
-      <OptionsList
-        className={styles.landing_page}
-        options={options}
-      />
+      <OptionsList options={options} />
     </>
   );
 };
