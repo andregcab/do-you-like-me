@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { AppContext } from '@context';
 import { decodeText } from '@utils';
+import { emailService } from '@services';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
 
 interface SendModalProps {
@@ -36,43 +37,43 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
   const senderEmail = searchParams.get('se')!;
 
   const handleClick = async () => {
-    setLoading(true);
-    const res = await fetch('/api/sendgrid', {
-      body: JSON.stringify({
-        to: decodeText(senderEmail),
-        response: selectedAnswer,
-        responder: responderName,
-        senderName,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
-
-    const { error } = await res.json();
-
-    if (error) {
-      console.error(error);
-      setLoading(false);
+    if (!selectedAnswer)
       return toast({
         title: `Oops! Something went wrong (╥﹏╥)`,
         status: 'error',
         duration: 5000,
         isClosable: true,
       });
-    }
 
-    setLoading(false);
-    onClose();
-    router.push('/');
+    setLoading(true);
 
-    return toast({
-      title: `Thanks! We'll let ${senderName} know`,
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-    });
+    await emailService({
+      senderEmail,
+      selectedAnswer,
+      responderName,
+      senderName,
+    })
+      .then(() => {
+        setLoading(false);
+        onClose();
+        router.push('/');
+
+        return toast({
+          title: `Thanks! We'll let ${senderName} know`,
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch(() => {
+        setLoading(false);
+        return toast({
+          title: `Oops! Something went wrong (╥﹏╥)`,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      });
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

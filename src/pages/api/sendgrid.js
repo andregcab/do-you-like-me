@@ -31,7 +31,7 @@ const sendEmail = async (req, res) => {
       .json({ error: error.message });
   }
 
-  return res.status(200).json({ error: '' });
+  return res.status(200).json({ status: '(*・‿・)ノ⌒*:･ﾟ✧' });
 };
 
 export default sendEmail;

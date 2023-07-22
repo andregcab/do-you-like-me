@@ -19,6 +19,7 @@
       "@components/*": ["components/*"],
       "@context": ["context/index.tsx"],
       "@public/*": ["../public/assets/*"],
+      "@services": ["services/index.ts"],
       "@styles/*": ["styles/*"],
       "@types": ["types.ts"],
       "@utils": ["utils/index.ts"]
