@@ -3,6 +3,8 @@
   align-items: flex-start;
   flex-direction: column;
   margin-top: 6rem;
+  height: 78%;
+  overflow: auto;
   > div {
     margin: 2.5rem;
     label {
