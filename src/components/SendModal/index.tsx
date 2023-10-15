@@ -1,5 +1,4 @@
-import { ChangeEvent, useContext, useState } from 'react';
-import { useRouter } from 'next/router';
+import { ChangeEvent, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -12,11 +11,9 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useToast,
 } from '@chakra-ui/react';
-import { AppContext } from '@context';
+import { useSendEmail } from '@hooks';
 import { decodeText } from '@utils';
-import { emailService } from '@services';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
 
 interface SendModalProps {
@@ -25,56 +22,16 @@ interface SendModalProps {
 }
 
 const SendModal = ({ isOpen, onClose }: SendModalProps) => {
-  const toast = useToast();
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const { selectedAnswer } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [responderName, setResponderName] = useState('');
+  const sendEmail = useSendEmail();
 
   const encodedSenderName = searchParams.get('sn')!;
   const senderName = decodeText(encodedSenderName);
-  const senderEmail = searchParams.get('se')!;
 
-  const handleClick = async () => {
-    if (!selectedAnswer)
-      return toast({
-        title: `Oops! Something went wrong (╥﹏╥)`,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-
-    setLoading(true);
-
-    await emailService({
-      senderEmail,
-      selectedAnswer,
-      responderName,
-      senderName,
-    })
-      .then(() => {
-        setLoading(false);
-        onClose();
-        router.push('/');
-
-        return toast({
-          title: `Thanks! We'll let ${senderName} know`,
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        });
-      })
-      .catch(() => {
-        setLoading(false);
-        return toast({
-          title: `Oops! Something went wrong (╥﹏╥)`,
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
-      });
-  };
+  const handleClick = async () =>
+    sendEmail({ onClose, responderName, setLoading });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setResponderName(e.target.value);
