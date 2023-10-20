@@ -35,3 +35,10 @@ export type SetAnswer = StateSetter<Answers | null>;
 export type SetResponding = StateSetter<boolean>;
 
 export type StateSetter<T> = Dispatch<SetStateAction<T>>;
+
+export type EmailServiceProps = {
+  responderName: string;
+  selectedAnswer: string;
+  senderEmail: string;
+  senderName: string;
+};

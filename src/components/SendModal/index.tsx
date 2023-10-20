@@ -1,5 +1,6 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import {
   Button,
@@ -11,8 +12,10 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  useToast,
 } from '@chakra-ui/react';
-import { useSendEmail } from '@hooks';
+import { AppContext } from '@context';
+import { useSendAnswerEmail } from '@hooks';
 import { decodeText } from '@utils';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
 
@@ -23,19 +26,50 @@ interface SendModalProps {
 
 const SendModal = ({ isOpen, onClose }: SendModalProps) => {
   const searchParams = useSearchParams();
-  const [loading, setLoading] = useState(false);
+  const { selectedAnswer } = useContext(AppContext);
   const [responderName, setResponderName] = useState('');
-  const sendEmail = useSendEmail();
+  const { error, loading, sendAnswerEmail } = useSendAnswerEmail();
+  const toast = useToast();
+  const router = useRouter();
 
   const encodedSenderName = searchParams.get('sn')!;
   const senderName = decodeText(encodedSenderName);
+  const senderEmail = searchParams.get('se')!;
 
-  const handleClick = async () =>
-    sendEmail({ onClose, responderName, setLoading });
+  const handleSend = async () => {
+    if (selectedAnswer) {
+      sendAnswerEmail({
+        responderName,
+        selectedAnswer,
+        senderEmail,
+        senderName,
+      }).then(() => {
+        onClose();
+        router.push('/');
+        toast({
+          title: `Thanks! We'll let ${senderName} know`,
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+    }
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setResponderName(e.target.value);
   };
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: `Oops! Something went wrong (╥﹏╥)`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }, [error, toast]);
 
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
@@ -64,7 +98,7 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
             variant="outline"
             colorScheme="whatsapp"
             isLoading={loading}
-            onClick={handleClick}
+            onClick={handleSend}
           >
             Send
             <Image

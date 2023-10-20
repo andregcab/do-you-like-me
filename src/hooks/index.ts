@@ -1,3 +1,3 @@
-import { useSendEmail } from './useSendEmail';
+import { useSendAnswerEmail } from './useSendAnswerEmail';
 
-export { useSendEmail };
+export { useSendAnswerEmail };
