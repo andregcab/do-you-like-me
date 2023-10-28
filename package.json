@@ -1,5 +1,8 @@
 {
   "name": "do_you_like_me",
+  "engines": {
+    "node": "18.14.2"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
