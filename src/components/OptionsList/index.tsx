@@ -1,4 +1,4 @@
-import { Options } from '@types';
+import type { Options } from '@types';
 import Option from '@components/Option';
 import styles from '@styles/Options.module.scss';
 

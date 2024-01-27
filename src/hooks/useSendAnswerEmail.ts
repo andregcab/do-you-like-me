@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { EmailServiceProps } from '@types';
+import type { EmailServiceProps } from '@types';
 import { emailService } from '@services';
 
 export const useSendAnswerEmail = () => {

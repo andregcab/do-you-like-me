@@ -1,5 +1,5 @@
 import { decodeText } from '@utils';
-import { EmailServiceProps } from '@types';
+import type { EmailServiceProps } from '@types';
 
 const emailService = async ({
   responderName,

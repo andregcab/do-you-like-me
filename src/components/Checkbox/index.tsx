@@ -1,4 +1,4 @@
-import { Option } from '@types';
+import type { Option } from '@types';
 import styles from '@styles/Checkbox.module.scss';
 
 interface CheckboxProps {
