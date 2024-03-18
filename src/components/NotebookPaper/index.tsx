@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { PropsWithChildren } from '@types';
+import type { PropsWithChildren } from '@types';
 import HeartDoodle from '@components/HeartDoodle';
 import styles from '@styles/NotebookPaper.module.scss';
 

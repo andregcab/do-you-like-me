@@ -1,6 +1,6 @@
-import { ChangeEvent, useContext, useState } from 'react';
-import { useRouter } from 'next/router';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import {
   Button,
@@ -15,8 +15,8 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { AppContext } from '@context';
+import { useSendAnswerEmail } from '@hooks';
 import { decodeText } from '@utils';
-import { emailService } from '@services';
 import PaperPlaneIcon from '@public/paper-plane-icon.png';
 
 interface SendModalProps {
@@ -25,60 +25,51 @@ interface SendModalProps {
 }
 
 const SendModal = ({ isOpen, onClose }: SendModalProps) => {
-  const toast = useToast();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { selectedAnswer } = useContext(AppContext);
-  const [loading, setLoading] = useState(false);
   const [responderName, setResponderName] = useState('');
+  const { error, loading, sendAnswerEmail } = useSendAnswerEmail();
+  const toast = useToast();
+  const router = useRouter();
 
   const encodedSenderName = searchParams.get('sn')!;
   const senderName = decodeText(encodedSenderName);
   const senderEmail = searchParams.get('se')!;
 
-  const handleClick = async () => {
-    if (!selectedAnswer)
-      return toast({
-        title: `Oops! Something went wrong (╥﹏╥)`,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-
-    setLoading(true);
-
-    await emailService({
-      senderEmail,
-      selectedAnswer,
-      responderName,
-      senderName,
-    })
-      .then(() => {
-        setLoading(false);
+  const handleSend = async () => {
+    if (selectedAnswer) {
+      sendAnswerEmail({
+        responderName,
+        selectedAnswer,
+        senderEmail,
+        senderName,
+      }).then(() => {
         onClose();
         router.push('/');
-
-        return toast({
+        toast({
           title: `Thanks! We'll let ${senderName} know`,
           status: 'success',
           duration: 5000,
           isClosable: true,
         });
-      })
-      .catch(() => {
-        setLoading(false);
-        return toast({
-          title: `Oops! Something went wrong (╥﹏╥)`,
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
       });
+    }
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setResponderName(e.target.value);
   };
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: `Oops! Something went wrong (╥﹏╥)`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }, [error, toast]);
 
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
@@ -107,7 +98,7 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
             variant="outline"
             colorScheme="whatsapp"
             isLoading={loading}
-            onClick={handleClick}
+            onClick={handleSend}
           >
             Send
             <Image

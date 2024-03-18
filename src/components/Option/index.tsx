@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '@context';
-import { Option } from '@types';
+import type { Option } from '@types';
 import Checkbox from '@components/Checkbox';
 import styles from '@styles/Option.module.scss';
 
