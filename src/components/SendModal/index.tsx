@@ -47,7 +47,7 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
         onClose();
         router.push('/');
         toast({
-          title: `Thanks! We'll let ${senderName} know`,
+          title: `Love u bro <3`,
           status: 'success',
           duration: 5000,
           isClosable: true,
@@ -80,13 +80,7 @@ const SendModal = ({ isOpen, onClose }: SendModalProps) => {
       <ModalContent>
         <ModalHeader>{`Respond to ${senderName}`}</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
-          <Input
-            value={responderName}
-            onChange={handleInputChange}
-            placeholder="your name (optional)"
-          />
-        </ModalBody>
+        <ModalBody></ModalBody>
         <ModalFooter>
           <Button mr={3} onClick={onClose}>
             Close

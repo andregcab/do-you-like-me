@@ -5,7 +5,7 @@ import { AppContext } from '@context';
 import { Answers, Options } from '@types';
 // import HeartDoodle from '@components/HeartDoodle';
 import { delay } from '@utils';
-import OptionsList from '@components/OptionsList';
+import Note from './note';
 
 const Main = () => {
   const router = useRouter();
@@ -35,13 +35,6 @@ const Main = () => {
     () => linkToExternal('https://www.climatetownproductions.com/'),
   ];
 
-  const options: Options = [
-    { label: Answers.ASK, actions: askActions },
-    { label: Answers.SEE, actions: seeActions },
-    { label: Answers.WHO, actions: whoActions },
-    { label: Answers.SECRET, actions: secretActions },
-  ];
-
   useEffect(() => {
     setSelectedAnswer(null);
     setResponding(false);
@@ -50,10 +43,10 @@ const Main = () => {
   return (
     <>
       <Head>
-        <title>Do u like me?</title>
+        <title>Will you be my best man?</title>
         <meta
           name="description"
-          content="An app for seeing if someone likes you"
+          content="An app for seeing if Jariel will be our best man"
         />
         <meta
           name="viewport"
@@ -62,7 +55,7 @@ const Main = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <HeartDoodle /> */}
-      <OptionsList options={options} />
+      <Note />
     </>
   );
 };

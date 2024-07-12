@@ -14,7 +14,9 @@ const NotebookPaper = ({ children }: PropsWithChildren) => {
       <div className={`${styles.r_margin} ${styles.margin}`}></div>
       <Link href="/">
         <header>
-          <span className={styles.page_title}>Do u like me?</span>
+          <span className={styles.page_title}>
+            Will you be my best man?
+          </span>
         </header>
       </Link>
       {children}

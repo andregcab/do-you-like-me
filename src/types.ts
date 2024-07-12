@@ -1,9 +1,9 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export enum Answers {
-  YES = 'yes',
-  NO = 'no',
-  MAYBE = 'maybe',
+  YES = 'yes 😊',
+  NO = 'no 😦',
+  MAYBE = 'maybe 🧐',
   ASK = 'Ask someone if they like you',
   SEE = 'Preview the note page',
   WHO = 'Who made this thing anyway?',
